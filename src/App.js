@@ -5,8 +5,11 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Account from './pages/Account';
-import { HOME_URL } from "./utils/urls";
+import SignUp from './pages/SignUp';
+import LongIn from './pages/LogIn';
+import { ACCOUNT_URL, EVENT_URL, HOME_URL, LOG_IN_URL, SERVICES_URL, SIGN_UP_URL } from "./utils/urls";
 import './styles/index.css';
+import Event from "./pages/Event";
 
 function App() {
   return (
@@ -15,8 +18,11 @@ function App() {
           <Navbar/>
           <Switch>
             <Route path={HOME_URL} exact component={Home}/>
-            <Route path="/services" exact component={Services}/>
-            <Route path="/account" exact component={Account}/>
+            <Route path={SERVICES_URL} exact component={Services}/>
+            <Route path={ACCOUNT_URL} exact component={Account}/>
+            <Route path={SIGN_UP_URL} exact component={SignUp}/>
+            <Route path={LOG_IN_URL} exact component={LongIn}/>
+            <Route path={`${EVENT_URL}/:name`} exact component={Event}></Route>
           </Switch>
       </Router>
     
