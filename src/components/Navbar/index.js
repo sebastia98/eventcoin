@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import './index.css';
 
 import { Button } from '../Button';
-import { HOME_URL } from '../../utils/urls';
+import { ACCOUNT_URL, HOME_URL, LOG_IN_URL, SERVICES_URL, SIGN_UP_URL } from '../../utils/urls';
 
 function Navbar() {
     const [click, setClick] = useState(false);
@@ -45,25 +45,25 @@ function Navbar() {
                     </div>
                     <ul className={click ? 'nav-menu active' : 'nav-menu'}>
                         <li className="nav-item">
-                            <Link to = "/" className={`nav-links ${button ? 'nav-hover' : ''} `} onClick={closeMobileMenu}>
+                            <Link to = {HOME_URL} className={`nav-links ${button ? 'nav-hover' : ''} `} onClick={closeMobileMenu}>
                                 Home
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to = "/services" className={`nav-links ${button ? 'nav-hover' : ''} `} onClick={closeMobileMenu}>
+                            <Link to = {SERVICES_URL} className={`nav-links ${button ? 'nav-hover' : ''} `} onClick={closeMobileMenu}>
                                 Services
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to = "/account" className={`nav-links ${button ? 'nav-hover' : ''} `} onClick={closeMobileMenu}>
+                            <Link to = {ACCOUNT_URL} className={`nav-links ${button ? 'nav-hover' : ''} `} onClick={closeMobileMenu}>
                                 Account
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to = "/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>
+                            <Link to = {SIGN_UP_URL} className="nav-links-mobile" onClick={closeMobileMenu}>
                                 Sign Up
                             </Link>
-                            <Link to = "/log-in" className="nav-links-mobile" onClick={closeMobileMenu}>
+                            <Link to = {LOG_IN_URL} className="nav-links-mobile" onClick={closeMobileMenu}>
                                 Log In
                             </Link>
                         </li>
