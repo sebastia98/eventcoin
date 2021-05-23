@@ -1,0 +1,36 @@
+.event-wrapper {
+    padding: 20px;
+}
+
+.card-event {
+    width: 100%;
+    min-width: 300px;
+    border: 1px solid black;
+}
+
+.card-event .card-event-img {
+    min-height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+.card-event .card-event-description {
+    padding: 12px 18px;
+}
+
+.card-event .card-event-description > p{
+    padding: 8px 0;
+    font-size: 18px;
+}
+
+.card-event .card-event-description .event-tickets {
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+}
+
+.card-event .card-event-description .event-tickets .event-ticket-wrapper {
+    display: flex;
+    column-gap: 4px;
+}
