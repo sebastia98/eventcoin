@@ -6,7 +6,7 @@ import './index.css'
 
 function Card({event}) {
     return (
-        <Link to = {`${EVENT_URL}/${event?.name}`}>
+        <Link to = {`${EVENT_URL}/${event?.name}`} className="card-link">
             <div className="card-container">
                 <div className="image-container">
                     <img src={event?.image} alt=""/>
