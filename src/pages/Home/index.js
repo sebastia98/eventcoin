@@ -11,19 +11,27 @@ const events = [
         description : "Este evento está guay",
         price : 21.50,
         availableTickets : 400
-    },
+    }, 
     {
         image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name : "EventTwo",
-        date : "22/09/2021",
+        name : "EventOne",
+        date : "21/09/2021",
+        description : "Este evento está guay",
+        price : 21.50,
+        availableTickets : 400
+    }, 
+    {
+        image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+        name : "EventOne",
+        date : "21/09/2021",
         description : "Este evento está guay",
         price : 21.50,
         availableTickets : 400
     },
     {
         image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name : "EventThree",
-        date : "23/09/2021",
+        name : "EventOne",
+        date : "21/09/2021",
         description : "Este evento está guay",
         price : 21.50,
         availableTickets : 400

@@ -41,9 +41,16 @@
     color: white;
 }
 
+.home-page .events-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+}
+
 .home-page .events-wrapper .event-cards {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .home-page .events-wrapper .event-cards .event-wrapper {

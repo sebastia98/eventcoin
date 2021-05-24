@@ -25,7 +25,6 @@ function App() {
             <Route path={`${EVENT_URL}/:name`} exact component={Event}></Route>
           </Switch>
       </Router>
-    
     </div>
   );
 }
