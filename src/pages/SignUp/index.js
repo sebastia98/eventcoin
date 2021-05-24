@@ -1,9 +1,15 @@
 import React from 'react'
+import FormUser from '../../components/FormUser';
+
+import './index.css';
 
 function SignUp() {
     return (
-        <div>
-            <h1>Este es el fichero de Sign Up</h1>
+        <div className="form-wrapper">
+            <h1 className="title-form"> Create your user</h1>
+            <div className="form-container">
+                <FormUser/>
+            </div>
         </div>
     )
 }

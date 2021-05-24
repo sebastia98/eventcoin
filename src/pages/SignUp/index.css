@@ -1,0 +1,16 @@
+.form-wrapper {
+    padding: 60px;
+    background-color: aqua;
+}
+
+.form-wrapper .title-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.form-wrapper .form-container {
+    display: flex;
+    justify-content: center;
+    background-color: blueviolet;
+}
