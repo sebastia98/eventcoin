@@ -1,12 +1,12 @@
 import React from 'react'
+import LogInUser from '../../components/LogInUser';
+
+import './index.css';
 
 function LogIn() {
     return (
-        <div>
-            <h1>Este es el fichero de log in</h1>
-            <form>
-
-            </form>
+        <div className="form-wrapper">
+            <LogInUser/>
         </div>
     )
 }
