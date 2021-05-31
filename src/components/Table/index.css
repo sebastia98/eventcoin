@@ -1,0 +1,15 @@
+.table-container {
+    color: white;
+    margin-top: 70px;
+}
+
+.table-container .table-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    font-size: 40px;
+}
+
+.table-container .table {
+    border: blue 5px solid;
+}
