@@ -15,7 +15,7 @@ function Card({event}) {
                 <div className="card-body">
                     <div className="card-price">
                             <p>{event?.price}</p>
-                            <i class="fas fa-euro-sign"></i>
+                            <i className="fas fa-euro-sign"></i>
                     </div>
                     <p className="card-date">{event?.date}</p>
                 </div>
