@@ -1,0 +1,22 @@
+.service-container {
+    background-color: rgb(40, 40, 41);
+    
+}
+
+.table-body {
+    height: 100%;
+}
+
+.service-container td {
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+    /*min-width: 100px; */
+}
+
+@media (max-width: 700px) {
+    .service-container td {
+        font-size: 10px;
+        
+    }
+}

@@ -1,5 +1,6 @@
-import React from 'react'
-import Table from '../../components/Table';
+import React from 'react';
+import Service from '../../components/service';
+import FilterUser from '../../components/FilterService';
 import './index.css'
 
 
@@ -14,7 +15,7 @@ const data = [
     {
         userName: "Charls",
         fullName: "Carlos Sandoval",
-        service: "Dancer",
+        service: "Dancer, clown and gogo",
         description: "Salsa, tango and barchata",
         priceForHour: 12.50 
     },
@@ -30,11 +31,26 @@ const data = [
 function Services() {
     return (
         <div className="services-wrapper">
-            <Table
-            tableData = {data}
-            headingColums = {["Username", "FullName", "Service", "Description", "Price for Hour"]}
-            title = "Available service's"
-            />
+            <div className="services-container">
+                <div className="service-title">
+                    <h1>Availability services</h1>
+                </div>
+                <div className="filter-form-wrapper">
+                
+                </div>
+                <table className="table">
+                <thead className = "table-header">
+                            <th>Nick</th>
+                            <th>Full name</th>
+                            <th>Offered services</th>
+                            <th>Rate</th>
+                        </thead>
+                    <tbody className="table-body">
+                        
+                        {data.map((service, index) => <Service key = {index} service = {service}></Service>)}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }
