@@ -1,6 +1,6 @@
 import React from 'react';
 import Service from '../../components/service';
-import FilterUser from '../../components/FilterService';
+import ServiceForm from '../../components/ServiceForm';
 import './index.css'
 
 
@@ -36,7 +36,7 @@ function Services() {
                     <h1>Availability services</h1>
                 </div>
                 <div className="filter-form-wrapper">
-                
+                    <ServiceForm/>
                 </div>
                 <table className="table">
                 <thead className = "table-header">
