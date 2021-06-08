@@ -5,10 +5,11 @@ function SignUpUser() {
 
     const sendUser = () => 
         new Promise((resolve, reject) => {
-            fetch("/user/insertuser", {
+            fetch("/user/insertUser", {
                 method: "POST",
                 headers: {
-                    "access-control-allow-origin" : "*","Content-Type": "application/json"},
+                    "Access-Control-Allow-Origin" : "*",
+                    "Content-Type": "application/json"},
                 body: JSON.stringify(event)
             })
             .then((response) => {
@@ -40,6 +41,9 @@ function SignUpUser() {
             setLoading(true);
                 sendUser()
                 .then((response) => {
+                    if(!response.ok) {
+                        throw new Error("No encuentra el servidor")
+                    }
                     console.log(response);
                 }).catch((error) => {
                     console.log(error);
