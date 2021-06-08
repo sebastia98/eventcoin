@@ -23,15 +23,12 @@ function Navbar() {
     useEffect(() => {
         window.addEventListener('resize', showButton);
         showButton();
-        console.log("first");
         return () => {
             window.removeEventListener('resize', showButton)
         }
     }, []);
 
-    useEffect(() => {
-        console.log("second");
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <div>
