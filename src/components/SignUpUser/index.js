@@ -1,23 +1,61 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './index.css';
 
 function SignUpUser() {
 
-    // const eventHandler = () => {
+    const sendUser = () => 
+        new Promise((resolve, reject) => {
+            fetch("/user/insertuser", {
+                method: "POST",
+                headers: {
+                    "access-control-allow-origin" : "*","Content-Type": "application/json"},
+                body: JSON.stringify(event)
+            })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            })
+        });
         
-    //     fetch("http://localhost:8080/insertuser", 
-    //     {method: "POST",
-    //     body: JSON.stringify(event)}).then(data => {
-    //         console.log(data)
-    //     })
-    //     console.log(event);
-    // }
+    
 
-    const eventValidation = () => {
-        console.log(event);
+    const checkPassword = (password, confirmPassword) => password === confirmPassword;
+
+    const processUserData = (e) => {
+
+        e.preventDefault();
+
+        const errs = {};
+
+        if(!checkPassword(event.password, event.confirmPassword)) {
+            errs.hasError = true;
+            errs.confirmPassword = true;
+        }
+
+        if(errs.hasError) {
+            setError(errs)
+        } else {
+            setLoading(true);
+                sendUser()
+                .then((response) => {
+                    console.log(response);
+                }).catch((error) => {
+                    console.log(error);
+                }).finally(() => {
+                    setLoading(false);
+                });
+        }
     }
 
-    const [event, setEvent] = useState({}); 
+    const [event, setEvent] = useState({});
+    const [error, setError] = useState({});
+    const [loading, setLoading] = useState(false);
+    
+    useEffect(() => {
+        setError({...error, hasError:false, confirmPassword:false});
+    }, [event.password, event.confirmPassword])
 
     return (
         <div className="container">
@@ -27,7 +65,7 @@ function SignUpUser() {
                     <div className="input-box">
                         <span className="details">Full Name</span>
                         <input type="text" placeholder="Enter your Name" required onChange={(e) => {
-                            setEvent({...event, name: e.target.value})
+                            setEvent({...event, fullName: e.target.value})
                         }}/>
                     </div>
                     <div className="input-box">
@@ -59,6 +97,7 @@ function SignUpUser() {
                         <input type="password" placeholder="Repeat your Password" required onChange={(e) => {
                             setEvent({...event, confirmPassword: e.target.value})
                         }}/>
+                        {error.confirmPassword && (<span>Passwords don't match</span>)}
                     </div>
                 </div>
                 <div className="gender-details">
@@ -69,7 +108,7 @@ function SignUpUser() {
                             setEvent({...event, gender: "female"})
                         }}/>
                     <input type="radio" name="gender" id="dot-3" onChange={(e) => {
-                            setEvent({...event, gender: "not binary"})
+                            setEvent({...event, gender: "notbinary"})
                         }}/>
                     <span className="gender-title">Gender</span>
                     <div className="category">
@@ -88,12 +127,10 @@ function SignUpUser() {
                     </div>
                 </div>
                 <div className="button">
-                    <input type="submit" value="Register" onClick={eventValidation}/>
+                    <input disabled={loading} type="submit" value="Register" onClick={processUserData}/>
                 </div>
             </form>
         </div>
- 
-        // TODO: hacer peticion fetch en el eventHandler
     )
 }
 
