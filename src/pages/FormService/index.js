@@ -6,8 +6,34 @@ export const FormService = () => {
     const [event, setEvent] = useState({});
 
     const processServiceData = (e) => {
-        console.log(event);
+
+        e.preventDefault();
+
+        sendService().then((response) => {
+            console.log(response);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
+
+    const sendService = () => 
+        new Promise((resolve, reject) => {
+            fetch("/service/insertService", {
+                method: "POST",
+                headers: {
+                            "access-control-allow-origin" : "*",
+                            "Content-Type": "application/json"
+                        },
+                body: JSON.stringify({...event, userId : "60be367dff78f742d2a171e8"})
+                })
+                .then((response) => {
+                    resolve(response);
+                })
+                .catch((error) => {
+                    reject(error);
+                })
+        });
+    
 
     return (
         <div className="service-form-wrapper">

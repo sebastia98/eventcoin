@@ -45,8 +45,7 @@ function Services() {
                             <th>Offered services</th>
                             <th>Rate</th>
                         </thead>
-                    <tbody className="table-body">
-                        
+                    <tbody className="table-body">    
                         {data.map((service, index) => <Service key = {index} service = {service}></Service>)}
                     </tbody>
                 </table>
