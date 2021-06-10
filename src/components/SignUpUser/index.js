@@ -36,6 +36,7 @@ function SignUpUser() {
                 .then(response => response.json())
                 .then((responseBody) => {
                     if(!responseBody.ok) {
+                        console.log(responseBody);
                         setInvalidParams(responseBody.message);
                     }
                 })
@@ -49,12 +50,12 @@ function SignUpUser() {
     const [invalidParams, setInvalidParams] = useState("");
     const [loading, setLoading] = useState(false);
     
-    useEffect(() => {setError({...error, hasError:false, confirmPassword:false})}, [event.password, event.confirmPassword])
+    useEffect(() => {setError({...error, hasError : false, confirmPassword : false})}, [event.password, event.confirmPassword])
 
     return (
         <div className="container">
             <div className="title">Registration</div>
-            {invalidParams && (<span>Invalid params</span>)}
+            {invalidParams && (<span>{invalidParams}</span>)}
             <form>
                 <div className="user-details">
                     <div className="input-box">
