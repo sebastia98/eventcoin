@@ -8,28 +8,20 @@ export const Services = () => {
     const [data, setData] = useState([]);
 
     const readServices = () => {
-
         fetch("/service/readServices", {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"
-            }
+                "Content-Type": "application/json"}
         })
-        .then((response) => {
-            return response.json();})
-            .then(responseData => {
-                console.log(responseData.serv)
-                setData(responseData.serv)
-            })
-        .catch((error) => {
-            console.log(error);
-        })
-    }
+        .then(response => response.json())
+        .then(responseData => setData(responseData.serv))
+        .catch(error => console.log(error))
+    };
 
     useEffect(() => {
         readServices()
-    }, [])
+    }, []);
 
     return (
         <div className="services-wrapper">
@@ -55,5 +47,5 @@ export const Services = () => {
                 </table>
             </div>
         </div>
-    )
+    );
 }

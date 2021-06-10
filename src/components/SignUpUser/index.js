@@ -12,15 +12,9 @@ function SignUpUser() {
                     "Content-Type": "application/json"},
                 body: JSON.stringify(event)
             })
-            .then((response) => {
-                resolve(response);
-            })
-            .catch((error) => {
-                reject(error);
-            })
+            .then(response => resolve(response))
+            .catch(error => reject(error))
         });
-        
-    
 
     const checkPassword = (password, confirmPassword) => password === confirmPassword;
 
@@ -34,36 +28,33 @@ function SignUpUser() {
             errs.hasError = true;
             errs.confirmPassword = true;
         }
-
         if(errs.hasError) {
             setError(errs)
         } else {
             setLoading(true);
-                sendUser()
-                .then((response) => {
-                    if(!response.ok) {
-                        throw new Error("No encuentra el servidor")
+            sendUser()
+                .then(response => response.json())
+                .then((responseBody) => {
+                    if(!responseBody.ok) {
+                        setInvalidParams(responseBody.message);
                     }
-                    console.log(response);
-                }).catch((error) => {
-                    console.log(error);
-                }).finally(() => {
-                    setLoading(false);
-                });
+                })
+                .catch(error => console.log(error))
+                .finally(() => setLoading(false));
         }
     }
 
     const [event, setEvent] = useState({});
     const [error, setError] = useState({});
+    const [invalidParams, setInvalidParams] = useState("");
     const [loading, setLoading] = useState(false);
     
-    useEffect(() => {
-        setError({...error, hasError:false, confirmPassword:false});
-    }, [event.password, event.confirmPassword])
+    useEffect(() => {setError({...error, hasError:false, confirmPassword:false})}, [event.password, event.confirmPassword])
 
     return (
         <div className="container">
             <div className="title">Registration</div>
+            {invalidParams && (<span>Invalid params</span>)}
             <form>
                 <div className="user-details">
                     <div className="input-box">

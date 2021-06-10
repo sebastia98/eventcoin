@@ -25,5 +25,4 @@ function LogInUser() {
     )
 }
 
-
 export default LogInUser;
