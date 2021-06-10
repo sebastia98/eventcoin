@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home'
-import Services from './pages/Services'
+import {Services} from './pages/Services'
 import Account from './pages/Account';
 import SignUp from './pages/SignUp';
 import LongIn from './pages/LogIn';

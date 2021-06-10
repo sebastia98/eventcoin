@@ -13,7 +13,7 @@ const ServiceForm = () => {
             </div>
             <form className="service-form">
                 <input type="text" placeholder="Type your search"/>
-                <button><i class="fas fa-search"></i></button>
+                <button><i className="fas fa-search"></i></button>
             </form>
         </div>
         
