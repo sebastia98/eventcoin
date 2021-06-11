@@ -25,12 +25,12 @@ function LogInUser() {
         event.preventDefault();
 
         sendCredentials()
-            .then(response => {
-                history.push(HOME_URL);
-                console.log(response)
+            .then(response => response.json())
+            .then(responseBody => {
+                sessionStorage.setItem("userLogged", JSON.stringify(responseBody.user))
+                history.push(HOME_URL)
             })
             .catch(error => console.log(error))
-            .finally(() => console.log("se acabó"))
     };
 
     const [user, setUser] = useState({});
