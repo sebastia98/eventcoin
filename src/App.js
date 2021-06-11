@@ -14,7 +14,7 @@ import Event from "./pages/Event";
 
 function App() {
   return (
-    <div>
+    <div className="page">
       <Router>
           <Navbar/>
           <Switch>

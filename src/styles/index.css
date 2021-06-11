@@ -2,3 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
+.page {
+    background: linear-gradient(200deg, #000000, #333333);
+}

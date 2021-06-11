@@ -46,7 +46,6 @@ function Home() {
                 <div className="video-cover"/>
                 <div className="web-intro">
                     <h1 className="web-name">ServiceCoin</h1>
-                    <p className="web-description">Los mejores eventos para ti y tus amigos</p>
                 </div>
             </section>
             <section className="events-wrapper">
