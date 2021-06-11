@@ -1,25 +1,34 @@
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
+import { HOME_URL } from '../../utils/urls';
 import './index.css';
 
 function LogInUser() {
 
-    const sendCredentials = () => {
+    const history = useHistory();
+
+    const sendCredentials = () => 
         new Promise((resolve, reject) => {
             fetch("/user/loginUser", {
             method: "POST",
             headers: {
                 "Access-Control-Allow-Origin" : "*",
                 "Content-Type": "application/json"},
-            body: JSON.stringify(user)
+            body: JSON.stringify(user) 
         })
         .then(response => resolve(response))
         .catch(error => reject(error))
-        })
-    };
+        });
 
-    const logUser = () => {
+    const logUser = (event) => {
+
+        event.preventDefault();
+
         sendCredentials()
-            .then(response => console.log(response))
+            .then(response => {
+                history.push(HOME_URL);
+                console.log(response)
+            })
             .catch(error => console.log(error))
             .finally(() => console.log("se acabó"))
     };

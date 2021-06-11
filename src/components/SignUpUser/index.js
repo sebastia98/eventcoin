@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import {useHistory} from 'react-router-dom';
+import { LOG_IN_URL } from '../../utils/urls';
+
 import './index.css';
 
 function SignUpUser() {
+    
+    const history = useHistory();
 
     const sendUser = () => 
         new Promise((resolve, reject) => {
@@ -38,7 +43,9 @@ function SignUpUser() {
                     if(!responseBody.ok) {
                         console.log(responseBody);
                         setInvalidParams(responseBody.message);
-                    }
+                    } else {
+                        history.push(LOG_IN_URL);
+                    } 
                 })
                 .catch(error => console.log(error))
                 .finally(() => setLoading(false));
