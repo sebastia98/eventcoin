@@ -14,9 +14,42 @@
     /*min-width: 100px; */
 }
 
+.service-container .user-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-container .user-options button {
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    font-size: 18px;
+}
+
+.service-container .user-options button:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transition: 0.2s;
+}
+
+.service-container .user-options .edit {
+    background-color: rgb(91, 91, 207);
+    color: white;
+}
+
+.service-container .user-options .delete {
+    background-color: rgb(248, 64, 64);
+    color: white;
+}
+
 @media (max-width: 700px) {
     .service-container td {
         font-size: 10px;
         
+    }
+
+    .service-container .user-options button {
+        height: 20px;
+        font-size: 12px;
     }
 }

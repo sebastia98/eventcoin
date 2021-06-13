@@ -1,0 +1,71 @@
+.account-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.account-wrapper .logged-container .buttom-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.account-wrapper .logged-container .welcome {
+    color: white;
+    font-size: 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.account-wrapper .logged-container .table-container {
+    display: flex;
+    justify-content: center;
+}
+
+.account-wrapper .logged-container .table {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 80%;
+}
+
+.account-wrapper .logged-container .table .table-header {
+    font-size: 20px;
+    color: white; 
+    
+}
+
+.account-wrapper .logged-container .table .table-header .options {
+    padding: 20px 5vw;
+}
+
+.account-wrapper .logged-container .table .table-header th{
+    padding: 20px 8vw;
+    background-color: #1d1d1d;
+}
+
+@media (max-width: 700px) {
+
+    .account-wrapper {
+        padding: 0;
+        display: inline;
+    }
+
+    .account-wrapper .logged-container .table .table-header {
+        font-size: 12px;
+    }
+
+    .account-wrapper .logged-container .welcome {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 17px;
+    }
+
+    .account-wrapper .logged-container .table {
+        width: 100%;
+    }
+
+    .account-wrapper .logged-container .table .table-header th{
+        padding: 20px 3vw;
+        background-color: #1d1d1d;
+    }
+}
