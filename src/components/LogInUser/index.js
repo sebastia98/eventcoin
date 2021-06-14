@@ -27,18 +27,25 @@ function LogInUser() {
         sendCredentials()
             .then(response => response.json())
             .then(responseBody => {
-                sessionStorage.setItem("userLogged", JSON.stringify(responseBody.user))
-                history.push(HOME_URL)
+                if (responseBody.user) {
+                    setInvalidCredentials(false);
+                    sessionStorage.setItem("userLogged", JSON.stringify(responseBody.user));
+                    history.push(HOME_URL)
+                } else {
+                    setInvalidCredentials(true);
+                }
             })
             .catch(error => console.log(error))
     };
 
     const [user, setUser] = useState({});
+    const [invalidCredentials, setInvalidCredentials] = useState(false);
 
     return (
         <div className="container">
             <div className="title">Type your credentials</div>
             <form>
+                {invalidCredentials && <p>Invalid credentials</p>}
                 <div className="user-details">
                     <div className="input-box">
                         <span className="details">Username</span>
