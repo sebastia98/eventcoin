@@ -28,14 +28,17 @@ function LogInUser() {
             .then(response => response.json())
             .then(responseBody => {
                 if (responseBody.user) {
-                    setInvalidCredentials(false);
                     sessionStorage.setItem("userLogged", JSON.stringify(responseBody.user));
+                    setInvalidCredentials(false);
                     history.push(HOME_URL)
                 } else {
                     setInvalidCredentials(true);
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                setInvalidCredentials(true)
+                console.log(error)
+            })
     };
 
     const [user, setUser] = useState({});
