@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home'
 import {Services} from './pages/Services'
+import {Footer} from './components/footer'
 import Account from './pages/Account';
 import SignUp from './pages/SignUp';
 import LongIn from './pages/LogIn';
@@ -27,6 +28,10 @@ function App() {
             <Route path={FORM_SERVICE_URL} exact component={FormService}/>
           </Switch>
       </Router>
+      <div className = "footer">
+        <Footer/>
+      </div>
+
     </div>
   );
 }
