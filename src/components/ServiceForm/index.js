@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 import { FORM_SERVICE_URL } from '../../utils/urls';
 import './index.css';
 
-export const ServiceForm = () => {
+export const ServiceForm = ({onFilter}) => {
+
+    const [filter, setFilter] = useState("");
+
     return (
         <div className="service-form-container">
             <div className="button-container">
@@ -11,10 +14,10 @@ export const ServiceForm = () => {
                     <button className="button-service">Add a new service</button>
                 </Link>
             </div>
-            <form className="service-form">
-                <input type="text" placeholder="Type your search"/>
-                <button><i className="fas fa-search"></i></button>
-            </form>
+            <div className="service-form">
+                <input type="text" placeholder="Type your search" onChange = {(e) => setFilter(e.target.value)}/>
+                <button type = "button" onClick = {() => onFilter(filter)}><i className="fas fa-search"></i></button>
+            </div>
         </div>
         
     )

@@ -7,15 +7,17 @@ export const Services = () => {
 
     const [data, setData] = useState([]);
 
-    const readServices = () => {
-        fetch("/service/readServices", {
+    const readServices = (filter) => {
+        console.log(filter, "algo");
+        fetch(`/service/readServices${filter ? `?filter=${filter}` : ""}`, {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
                 "Content-Type": "application/json"}
+            
         })
         .then(response => response.json())
-        .then(responseData => setData(responseData.serv))
+        .then(responseData => {setData(responseData.serv)})
         .catch(error => console.log(error))
     };
 
@@ -30,7 +32,7 @@ export const Services = () => {
                     <h1>Availability services</h1>
                 </div>
                 <div className="filter-form-wrapper">
-                    <ServiceForm/>
+                    <ServiceForm onFilter = {readServices}/>  
                 </div>
                 <table className="table">
                     <thead className = "table-header">

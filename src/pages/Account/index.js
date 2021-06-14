@@ -17,7 +17,7 @@ function Account() {
                 "Content-Type": "application/json"},
             body: JSON.stringify(service)
         })
-        .then(() => resolve())
+        .then(() => resolve(readServices()))
         .catch(error => reject(error)));
 
     const readServices = () => {
