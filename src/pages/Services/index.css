@@ -1,6 +1,7 @@
 .services-wrapper {
     display: flex;
     flex-direction: column;
+    min-height: calc(100vh - 230px);
     align-items: center;
     padding: 0 30px 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

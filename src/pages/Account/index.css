@@ -1,7 +1,15 @@
 .account-wrapper {
     display: flex;
+    min-height: calc(100vh - 245px);
     justify-content: center;
     padding-top: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.account-wrapper .logged-container .table-container .without-services {
+    color: white;
+    padding: 30px;
+    font-size: 20px;
 }
 
 .account-wrapper .logged-container .buttom-container {
@@ -14,7 +22,6 @@
 .account-wrapper .logged-container .welcome {
     color: white;
     font-size: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .account-wrapper .logged-container .table-container {
