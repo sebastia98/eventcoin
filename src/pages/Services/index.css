@@ -40,7 +40,7 @@
     background-color: #1d1d1d;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 994px) {
 
     .services-wrapper {
         padding: 0;

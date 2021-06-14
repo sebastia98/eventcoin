@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 
-function Event() {
+function Service() {
     const {name} = useParams();
     
     return (
@@ -11,4 +11,4 @@ function Event() {
     )
 }
 
-export default Event
+export default Service

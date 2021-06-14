@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import Service from '../../components/service';
-import ServiceForm from '../../components/ServiceForm';
+import {Service} from '../../components/service';
+import {ServiceForm} from '../../components/ServiceForm';
 import './index.css'
 
 export const Services = () => {
@@ -38,7 +38,7 @@ export const Services = () => {
                             <th>Nick</th>
                             <th>Full name</th>
                             <th>Offered services</th>
-                            <th>Rate</th>
+                            <th>Rate</th>  
                         </tr>
                     </thead>
                     <tbody className="table-body">    
