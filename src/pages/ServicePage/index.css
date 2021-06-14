@@ -1,0 +1,81 @@
+.service-page-wrapper {
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.service-page-container {
+    background-color: white;
+    margin: 70px;
+    padding: 30px;
+    width: 70%;
+    border-radius: 15px;
+}
+
+.service-username {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.service-info {
+    margin: 20px;
+}
+
+.user-details p{
+    margin: 0 0 10px;
+}
+
+.service-offeredServices {
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.service-details {
+    margin-top: 10px;
+}
+
+.service-details p {
+    margin: 0 0 10px;
+}
+
+.contract-container {
+    display: flex;
+    justify-content: center;
+}
+
+.contract-button {
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid white;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 1.4px;
+    color: white;
+    padding: 10px;
+    background-color: deepskyblue;
+}
+
+.contract-button:hover {
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+@media(max-width: 700px) {
+    .service-username {
+        font-size: 18px;
+    }
+
+    .service-offeredServices {
+        font-size: 17px;
+    }
+
+    .service-details p,
+    .user-details p {
+        font-size: 13px;
+    }
+
+    .service-page-wrapper {
+        height: 100vh;
+    }
+}
