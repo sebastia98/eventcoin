@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { FORM_SERVICE_URL } from '../../utils/urls';
 import './index.css';
 
-const ServiceForm = () => {
+export const ServiceForm = () => {
     return (
         <div className="service-form-container">
             <div className="button-container">
@@ -19,5 +19,3 @@ const ServiceForm = () => {
         
     )
 }
-
-export default ServiceForm;
