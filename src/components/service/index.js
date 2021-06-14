@@ -13,8 +13,8 @@ export const Service = ({service, userService, deleteService}) =>  {
             <td className="full-name">{service?.userId.fullName}</td>
             <td className="offered-services">{service?.offeredServices}</td>
             <td className="service-price">{service?.rate} €</td>
-            {!userService && <Link to = {`${SERVICE_URL}/${service?.name}`} className = "view-more"><td><button className = "button-more">View</button></td> </Link>}
-            {userService && <td className = "user-options"><button className = "edit">Edit</button><button className = "delete" onClick = {deleteService(service)}>Delete</button></td>}
+            {!userService && <Link to = {`${SERVICE_URL}/${service?._id}`} className = "view-more"><td><button className = "button-more">View</button></td> </Link>}
+            {userService && <td className = "user-options"><button className = "edit">Edit</button><button className = "delete" onClick = {() => deleteService(service)}>Delete</button></td>}
         </tr>
     )
 }

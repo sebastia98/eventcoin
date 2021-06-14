@@ -2,11 +2,11 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 
 function Service() {
-    const {name} = useParams();
+    const {serviceId} = useParams();
     
     return (
         <div>
-            {name}
+            {serviceId}
         </div>
     )
 }

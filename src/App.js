@@ -24,7 +24,7 @@ function App() {
             <Route path={ACCOUNT_URL} exact component={Account}/>
             <Route path={SIGN_UP_URL} exact component={SignUp}/>
             <Route path={LOG_IN_URL} exact component={LongIn}/>
-            <Route path={`${SERVICE_URL}/:name`} exact component={ServicePage}/>
+            <Route path={`${SERVICE_URL}/:serviceId`} exact component={ServicePage}/>
             <Route path={FORM_SERVICE_URL} exact component={FormService}/>
           </Switch>
       </Router>
