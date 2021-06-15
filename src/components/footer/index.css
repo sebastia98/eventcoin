@@ -1,0 +1,16 @@
+.footer-container {
+    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container .footer {
+    padding: 30px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+
+.footer-container .footer p {
+    margin-top: 13px;
+}

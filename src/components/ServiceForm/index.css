@@ -1,0 +1,68 @@
+
+.button-container {
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;
+}
+
+.button-service {
+    height: 40px;
+    font-size: 20px;
+    border: 1px solid white;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 1.4px;
+    color: white;
+    padding: 10px;
+    background-color: deepskyblue;
+}
+
+.button-service:hover {
+    background-color: white;
+    color: deepskyblue;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+.service-form {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.service-form input {
+    text-align: center;
+    width: 50%;
+    height: 40px;
+}
+
+.service-form button {
+    width: 70px;
+    border: 1px solid white;
+    background-color: transparent;
+}
+
+.service-form button:hover {
+    background-color: white;
+    color: black;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+
+.service-form button i{
+    font-size: 20px;
+    color: white;
+}
+
+@media (max-width: 700px) {
+
+    .button-service {
+        font-size: 14px;
+    }
+
+    .service-form input {
+        height: 25px;
+    }
+
+}

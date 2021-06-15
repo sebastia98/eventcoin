@@ -1,0 +1,73 @@
+.service-container {
+    background-color: rgb(40, 40, 41);
+    
+}
+
+.table-body {
+    height: 100%;
+}
+.service-container td {
+    text-align: center;
+    color: white;
+    padding: 20px 0;
+    /*min-width: 100px; */
+}
+
+.service-container .view-more .button-more{
+    background-color: deepskyblue;
+    color: white;
+    padding: 7px 2vw;
+    border: none;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.service-container .view-more .button-more:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transition: 0.2s;
+}
+
+.service-container .user-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-container .user-options button {
+    height: 30px;
+    border: none;
+    border-radius: 7px;
+    font-size: 18px;
+}
+
+.service-container .user-options button:hover {
+    cursor: pointer;
+    opacity: 70%;
+    transition: 0.2s;
+}
+
+.service-container .user-options .edit {
+    background-color: rgb(91, 91, 207);
+    color: white;
+}
+
+.service-container .user-options .delete {
+    background-color: rgb(248, 64, 64);
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .service-container td {
+        font-size: 10px;
+        
+    }
+
+    .service-container .user-options button {
+        height: 20px;
+        font-size: 12px;
+    }
+
+    .service-container .view-more .button-more {
+        font-size: 10px;
+    }
+}
