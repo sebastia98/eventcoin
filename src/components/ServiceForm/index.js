@@ -6,13 +6,12 @@ import './index.css';
 export const ServiceForm = ({onFilter}) => {
 
     const [filter, setFilter] = useState("");
+    const userLogged = JSON.parse(sessionStorage.getItem("userLogged"));
 
     return (
         <div className="service-form-container">
             <div className="button-container">
-                <Link to={FORM_SERVICE_URL}>
-                    <button className="button-service">Add a new service</button>
-                </Link>
+                {userLogged && <Link to={FORM_SERVICE_URL}><button className="button-service">Add a new service</button></Link>}
             </div>
             <div className="service-form">
                 <input type="text" placeholder="Type your search" onChange = {(e) => setFilter(e.target.value)}/>
