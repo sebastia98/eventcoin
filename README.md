@@ -1,4 +1,62 @@
-# Getting Started with Create React App
+# EventCoin
+Este es el cliente de la aplicación Eventcoin. Este cliente se conecta con un servidor cuyo enlace del repositorio es [este](https://github.com/sebastia98/eventcoin).
+
+Este es el [enlace](https://drive.google.com/file/d/1fO5u85eFIKWWLuXDw2XSwKhRxPmBMkJf/view?usp=sharing) de la documentación mas detallada del proyecto. La documentación también está en formato PDF situada en la carpeta /src/docs de este repositorio.
+
+Este cliente está implementado usando: 
+* React como Front FrameWork 
+* JSX que es una extensión de JavaScript usada por React
+* CSS para los estilos de la página y Flexbox
+
+### Arrancar el cliente
+
+Para debes installar Node.js y npm. Node Js incluye npm, puedes hacerlo desde este [enlace](https://nodejs.org/en/download/).
+
+Si usas un sistema operativo Ubuntu puedes hacerlo utilizando el comando:
+
+```
+sudo nano apt-get intall nodejs
+```
+Una vez hayas intalado Node Js en tu dispositivo comprueba que estan intalados tanto Node Js como npm ejecutando el comando:
+
+```
+node -v
+```
+
+```
+npm -v
+```
+
+Deberá salirte por pantalla la versión instalada de Node js y de npm
+
+Una vez intalado Node y npm ya podrás arrancar el cliente. Para ello deberás clonar este reposiorio con el comando:
+
+```
+git clone https://github.com/sebastia98/eventcoin.git
+```
+
+Deberás dirgirte al directorio clonado con el comando:
+
+```
+cd eventcoin
+```
+
+Estando dentro del directorio deberás ejecutar el comando:
+
+```
+npm install
+```
+
+para poder instalar las dependencias que se usan para el despliegue del cliente.
+
+Una vez se hayan instalado dichas dependencias deberás ejecutar el comando:
+
+```
+npm start
+```
+para poder arrancar la aplicación que escucha a traves del puerto 3000.
+
+A continuación tenemos una pequeña guía para iniciarse en el despliegue de aplicaciones con npm.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
