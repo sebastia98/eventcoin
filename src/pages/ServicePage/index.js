@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from 'react-router-dom';
+import { FormRequestService } from '../../components/FormRequestService';
 
 import './index.css';
 
 function Service() {
 
     const {serviceId} = useParams();
-
-    console.log({serviceId})
 
     const [service, setService] = useState({});
     const [user, setUser] = useState({});
@@ -21,7 +20,7 @@ function Service() {
             
         })
         .then(response => response.json())
-        .then(responseData => {console.log(responseData)
+        .then(responseData => {
             setService(responseData.serv);
             setUser(responseData.serv.userId);
         })
@@ -51,9 +50,7 @@ function Service() {
                         <p>Description: {service.description}</p>
                     </div>      
                 </div>
-                <div className = "contract-container">
-                    <button className = "contract-button">Contract</button>
-                </div>
+                <FormRequestService user = {user} service = {service}/>
             </div>
         </div>
     )

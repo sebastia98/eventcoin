@@ -1,6 +1,6 @@
 .service-page-wrapper {
     display: flex;
-    height: 80vh;
+    height: 200vh;
     justify-content: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -37,28 +37,6 @@
 
 .service-details p {
     margin: 0 0 10px;
-}
-
-.contract-container {
-    display: flex;
-    justify-content: center;
-}
-
-.contract-button {
-    height: 40px;
-    font-size: 20px;
-    border: 1px solid white;
-    border: none;
-    border-radius: 10px;
-    letter-spacing: 1.4px;
-    color: white;
-    padding: 10px;
-    background-color: deepskyblue;
-}
-
-.contract-button:hover {
-    transition: all 0.3s ease-out;
-    cursor: pointer;
 }
 
 @media(max-width: 700px) {
