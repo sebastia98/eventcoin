@@ -68,11 +68,31 @@ function Account() {
                         {filterUserServices().map((service, index) => <Service key = {index} service = {service} userService deleteService = {deleteService}></Service>)}
                     </tbody>
                 </table>;
+
+const tableRequests = 
+                <table className = "table">
+                    <thead className = "table-header-request">
+                        <tr>
+                            <th>Services</th>
+                            <th>Owner</th>
+                            <th>Applicant</th>
+                            <th>Date</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th className = "options"></th>
+                        </tr>
+                    </thead>
+                    <tbody className="table-body">    
+                    </tbody>
+                </table>;
     
     const loggedContainer = <div className = "logged-container">
                                 <p className = "welcome">Welcome sr. {userLogged && userLogged.fullName}</p>
                                 <div className = "table-container">
                                     {filterUserServices().length === 0 ? <p className = "without-services">Don't have any service</p> : table}
+                                </div>
+                                <div className = "table-container">
+                                    {tableRequests}
                                 </div>
                             </div>
 
