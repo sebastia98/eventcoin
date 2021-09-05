@@ -1,87 +1,30 @@
-.account-wrapper {
+.account-page {
+    height: 63vh;
     display: flex;
-    min-height: calc(100vh - 245px);
     justify-content: center;
-    padding-top: 40px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
 }
 
-.account-wrapper .logged-container .table-container .without-services {
-    color: white;
-    padding: 30px;
+.add-service {
+    display: flex;
+    justify-content: center;
+}
+
+.account-services-container p {
+    font-size: 25px;
+    padding: 10px 0;
+}
+
+.add-service-button {
+    padding: 10px 35px;
     font-size: 20px;
+    border-radius: 10px;
+    background-color: #E6EED6;
 }
 
-.account-wrapper .logged-container .buttom-container {
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.account-wrapper .logged-container .welcome {
-    color: white;
-    font-size: 30px;
-}
-
-.account-wrapper .logged-container .table-container {
-    display: flex;
-    justify-content: center;
-}
-
-.account-wrapper .logged-container .table {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    width: 80%;
-}
-
-.account-wrapper .logged-container .table .table-header {
-    font-size: 20px;
-    color: white; 
-}
-
-.account-wrapper .logged-container .table .table-header-request {
-    font-size: 15px;
-    color: white; 
-}
-
-.account-wrapper .logged-container .table .table-header-request th{
-    padding: 20px 5vw;
-    background-color: #1d1d1d;
-}
-
-.account-wrapper .logged-container .table .table-header .options {
-    padding: 20px 5vw;
-}
-
-.account-wrapper .logged-container .table .table-header th{
-    padding: 20px 8vw;
-    background-color: #1d1d1d;
-}
-
-@media (max-width: 994px) {
-
-    .account-wrapper {
-        padding: 0;
-        display: inline;
-    }
-
-    .account-wrapper .logged-container .table .table-header {
-        font-size: 12px;
-    }
-
-    .account-wrapper .logged-container .welcome {
-        margin-top: 40px;
-        text-align: center;
-        font-size: 17px;
-    }
-
-    .account-wrapper .logged-container .table {
-        width: 100%;
-    }
-
-    .account-wrapper .logged-container .table .table-header th{
-        padding: 20px 3vw;
-        background-color: #1d1d1d;
-    }
+.add-service-button:hover {
+    background-color: #A72608;
+    transition: 0.2s;
+    color: #E6EED6;
+    cursor: pointer;
 }

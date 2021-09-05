@@ -24,11 +24,11 @@ export const FormRequestService = (props) => {
 
     const [event, setEvent] = useState({});
     useEffect(() => {setEvent({...event, 
-        serviceOwnerId : props.user._id, 
-        serviceId : props.service._id, 
-        serviceApplicantId : JSON.parse(sessionStorage.getItem("userLogged"))._id, 
-        ownerState: "pennding",
-        applicantState: "pennding"
+        //serviceOwnerId : props.user._id, 
+        //serviceId : props.service._id, 
+        //serviceApplicantId : JSON.parse(sessionStorage.getItem("userLogged"))._id, 
+        //ownerState: "pennding",
+        //applicantState: "pennding"
     })}, [props, sessionStorage])
 
     return (
@@ -64,7 +64,6 @@ export const FormRequestService = (props) => {
                     </div>
                 </div>
             </div>
-            
         </form>
         
     )

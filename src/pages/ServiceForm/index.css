@@ -1,47 +1,48 @@
-.signup-page {
+.service-form-page {
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
-.title-signup {
-    font-size: 40px;
+.title-service-form{
+    font-size: 30px;
     text-align: center;
 }
 
-.form-signup-container {
-    width: 400px;
+.service-form-container {
+    width: 500px;
 }
 
-.form-signup div {
+.service-form div {
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
 
-.form-signup div span {
+.service-form div span {
     font-size: 20px;
 }
 
-.form-signup div input{
+.service-form div textarea {
+    border-radius: 10px;
+    padding: 30px 0;
+    resize: none;
+}
+
+.service-form div input{
     padding: 10px;
     border-radius: 10px;
 }
 
-.form-signup .button-signup {
-    display: flex;
-    justify-content: center;
-}
-
-.form-signup .button-signup input{
-    padding: 10px;
+.button-add-service input{
+    padding: 20px;
     border-radius: 10px;
     font-size: 20px;
     background-color: #BBC5AA;
 }
 
-.form-signup .button-signup input:hover {
+.button-add-service input:hover {
     background-color: #A72608;
     transition: 0.2s;
     color: #E6EED6;

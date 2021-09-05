@@ -1,59 +1,81 @@
-.service-page-wrapper {
+.service-page {
+    height: 80vh;
     display: flex;
-    height: 200vh;
-    justify-content: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.service-page-container {
+.service-info-container {
     background-color: white;
-    margin: 70px;
-    padding: 30px;
-    width: 70%;
-    border-radius: 15px;
+    border: 1px solid black;
+    border-radius: 10px; 
+    padding: 30px 150px;
 }
 
-.service-username {
-    font-size: 30px;
-    padding-bottom: 10px;
+.service-info div{
+    padding: 10px 0;
 }
 
-.service-info {
-    margin: 20px;
+.service-info div p {
+    padding: 5px 0;
 }
 
-.user-details p{
-    margin: 0 0 10px;
-}
-
-.service-offeredServices {
+.fullname, .rate {
     font-size: 25px;
-    margin-top: 10px;
+}
+.services {
+    font-size: 35px;
+    margin: 10px 0;
 }
 
-.service-details {
-    margin-top: 10px;
+.service-details, .user-details {
+    font-size: 20px;
 }
 
-.service-details p {
-    margin: 0 0 10px;
+.request-form-container {
+    width: 350px;
 }
 
-@media(max-width: 700px) {
-    .service-username {
-        font-size: 18px;
-    }
+.inputs-container {
+    width: 400px;
+}
 
-    .service-offeredServices {
-        font-size: 17px;
-    }
+.inputs-container div{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
 
-    .service-details p,
-    .user-details p {
-        font-size: 13px;
-    }
+.inputs-container div span {
+    font-size: 20px;
+}
 
-    .service-page-wrapper {
-        height: 100vh;
-    }
+.inputs-container div input{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.form-signup .submit-block {
+    display: flex;
+    justify-content: center;
+}
+
+.textarea-block textarea{
+    resize: none;
+    padding: 30px 0;
+    border-radius: 10px;
+}
+
+.inputs-container .submit-block input{
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: #BBC5AA;
+}
+
+.inputs-container .submit-block input:hover {
+    background-color: #A72608;
+    transition: 0.2s;
+    color: #E6EED6;
+    cursor: pointer;
 }

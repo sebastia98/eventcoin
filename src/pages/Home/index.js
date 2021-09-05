@@ -1,60 +1,35 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './index.css'
-import HomeVideo from '../../assets/video/homeVideo.mp4';
-import Card from '../../components/Card'
 
-const events = [
-    {
-        image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name : "EventOne",
-        date : "21/09/2021",
-        description : "Este evento está guay",
-        price : 21.50,
-        availableTickets : 400
-    }, 
-    {
-        image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name : "EventOne",
-        date : "21/09/2021",
-        description : "Este evento está guay",
-        price : 21.50,
-        availableTickets : 400
-    }, 
-    {
-        image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name : "EventOne",
-        date : "21/09/2021",
-        description : "Este evento está guay",
-        price : 21.50,
-        availableTickets : 400
-    },
-    {
-        image : "https://images.pexels.com/photos/2123606/pexels-photo-2123606.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-        name : "EventOne",
-        date : "21/09/2021",
-        description : "Este evento está guay",
-        price : 21.50,
-        availableTickets : 400
-    }
-]
+import { TableServices } from '../../components/TableServices'
 
-function Home() {
+export const Home = () => {
+
+    const [data, setData] = useState([]);
+
+    const readServices = (filter) => {
+        fetch(`/service/readServices${filter ? `?filter=${filter}` : ""}`, {
+            method: "GET",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"}
+            
+        })
+        .then(response => response.json())
+        .then(responseData => {setData(responseData.serv)})
+        .catch(error => console.log(error))
+    };
+
+    useEffect(() => {
+        readServices()
+    }, []);
+
     return (
         <div className="home-page">
-            <section className="header"> 
-                <video className="video" src={HomeVideo} autoPlay muted loop></video>            
-                <div className="video-cover"/>
-                <div className="web-intro">
-                    <h1 className="web-name">ServiceCoin</h1>
-                </div>
-            </section>
-            <section className="events-wrapper">
-                <div className="event-cards">
-                    {events.map((event, index) => <Card key = {index} event = {event}></Card>)}
-                </div>
-            </section>
+            <div>
+                <p className = "available-services">Available services</p>
+                <TableServices data = {data}></TableServices>
+            </div>
         </div>
     )
 }
-
-export default Home

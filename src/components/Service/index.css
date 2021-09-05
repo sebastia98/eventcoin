@@ -1,0 +1,36 @@
+.button-more {
+    padding: 10px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #DDE2C6;
+    color: #090c02;
+}
+
+.button-more:hover {
+    background-color: #A72608;
+    cursor: pointer;
+    color: #DDE2C6;
+    transition: 0.2s;
+}
+
+.edit {
+    padding: 10px 30px;
+}
+
+.delete {
+    padding: 10px 20px;
+}
+
+.edit, .delete {
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #DDE2C6;
+    color: #090c02;
+}
+
+.edit:hover, .delete:hover {
+    background-color: #A72608;
+    cursor: pointer;
+    color: #DDE2C6;
+    transition: 0.2s;
+}

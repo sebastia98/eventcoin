@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Service} from '../../components/service';
-import {Button} from '../../components/Button';
+import { Link } from 'react-router-dom';
+import { TableServices } from '../../components/TableServices';
+import { FORM_SERVICE_URL } from '../../utils/urls';
 import "./index.css";
 
 function Account() {
@@ -36,7 +37,6 @@ function Account() {
     };
 
     const filterUserServices = () => {
-
         return data.filter(serv => JSON.stringify(serv.userId) === JSON.stringify(userLogged));
     }
 
@@ -44,62 +44,17 @@ function Account() {
         readServices()
     }, []);
 
-    const notLoggedContainer = <div className = "logged-container">
-                                    <p className = "welcome">Please register or login</p>
-                                    <div className = "buttom-container">
-                                        {<Button buttonStyle='btn--outline' path="/sign-up">SIGN UP</Button>}
-                                        {<Button buttonStyle='btn--outline' path="/log-in">LOG IN</Button>}
-                                    </div>
-                                </div>;
-
-
-
-    const table = <table className = "table">
-                    <thead className = "table-header">
-                        <tr>
-                            <th>Nick</th>
-                            <th>Full name</th>
-                            <th>Offered services</th>
-                            <th>Rate</th>
-                            <th className = "options"></th>
-                        </tr>
-                    </thead>
-                    <tbody className="table-body">    
-                        {filterUserServices().map((service, index) => <Service key = {index} service = {service} userService deleteService = {deleteService}></Service>)}
-                    </tbody>
-                </table>;
-
-const tableRequests = 
-                <table className = "table">
-                    <thead className = "table-header-request">
-                        <tr>
-                            <th>Services</th>
-                            <th>Owner</th>
-                            <th>Applicant</th>
-                            <th>Date</th>
-                            <th>Start</th>
-                            <th>End</th>
-                            <th className = "options"></th>
-                        </tr>
-                    </thead>
-                    <tbody className="table-body">    
-                    </tbody>
-                </table>;
-    
-    const loggedContainer = <div className = "logged-container">
-                                <p className = "welcome">Welcome sr. {userLogged && userLogged.fullName}</p>
-                                <div className = "table-container">
-                                    {filterUserServices().length === 0 ? <p className = "without-services">Don't have any service</p> : table}
-                                </div>
-                                <div className = "table-container">
-                                    {tableRequests}
-                                </div>
-                            </div>
-
-
     return (
-        <div className = "account-wrapper">
-            {sessionStorage.getItem("userLogged") === null ?  notLoggedContainer : loggedContainer}
+        <div className = "account-page">
+            <div className = "account-wrapper">
+                <div className = "add-service">
+                    <Link to = {FORM_SERVICE_URL}><button className = "add-service-button">Add new service</button></Link>
+                </div>
+                <div className = "account-services-container">
+                    <p>Your services: </p>
+                    <TableServices userService = {true} deleteService = {deleteService} data = {filterUserServices()}></TableServices>
+                </div>
+            </div>
         </div>
     )
 }
