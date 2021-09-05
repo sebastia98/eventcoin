@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
+import { TableRequests } from "../../components/TableRequests";
 import { TableServices } from '../../components/TableServices';
 import { FORM_SERVICE_URL } from '../../utils/urls';
 import "./index.css";
@@ -36,6 +37,10 @@ function Account() {
         .catch(error => console.log(error))
     };
 
+    const readRequests = () => {
+        
+    }
+
     const filterUserServices = () => {
         return data.filter(serv => JSON.stringify(serv.userId) === JSON.stringify(userLogged));
     }
@@ -53,6 +58,14 @@ function Account() {
                 <div className = "account-services-container">
                     <p>Your services: </p>
                     <TableServices userService = {true} deleteService = {deleteService} data = {filterUserServices()}></TableServices>
+                </div>
+                <div className = "account-requests-container">
+                    <div>
+                        <TableRequests></TableRequests>
+                    </div>
+                    <div>
+                        <TableRequests></TableRequests>
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,25 +3,14 @@
     justify-content: center;
 }
 
-.table {
+.services-table {
     border-radius: 10px;
 }
 
-th {
+.services-table-header th {
     background-color: #090C02;
     color: #e6eed6;
     font-size: 30px;
     padding: 20px 60px;
-}
-
-tr{
-    background-color: #BBC5AA;
-}
-
-td{
-    text-align: center;
-    color: #090C02;
-    padding: 30px;
-    font-size: 20px;
 }
 

@@ -10,7 +10,7 @@ import LongIn from './pages/LogIn';
 import {ServiceForm} from './pages/ServiceForm';
 import { ACCOUNT_URL, SERVICE_URL, FORM_SERVICE_URL, HOME_URL, LOG_IN_URL, SERVICES_URL, SIGN_UP_URL } from "./utils/urls";
 import './styles/index.css';
-import ServicePage from "./pages/ServicePage";
+import {ServicePage} from "./pages/ServicePage";
 
 function App() {
   return (

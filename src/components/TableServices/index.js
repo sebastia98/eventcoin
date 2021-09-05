@@ -7,8 +7,8 @@ export const TableServices = (props) => {
 
     return (
         <div className = "table-container">
-            <table className = "table">
-                <thead className = "table-header">
+            <table className = "services-table">
+                <thead className = "services-table-header">
                     <th>Owner</th>
                     <th>Service</th>
                     <th>Rate</th>

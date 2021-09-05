@@ -1,3 +1,14 @@
+.service-container{
+    background-color: #BBC5AA;
+}
+
+.service-container td{
+    text-align: center;
+    color: #090C02;
+    padding: 30px;
+    font-size: 20px;
+}
+
 .button-more {
     padding: 10px 30px;
     border-radius: 10px;

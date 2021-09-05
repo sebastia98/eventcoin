@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import './index.css';
 
-function Service() {
+export const ServicePage = () => {
 
     const {serviceId} = useParams();
 
@@ -112,5 +112,3 @@ function Service() {
         </div>
     )
 }
-
-export default Service

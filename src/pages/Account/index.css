@@ -1,5 +1,5 @@
 .account-page {
-    height: 63vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,4 +27,10 @@
     transition: 0.2s;
     color: #E6EED6;
     cursor: pointer;
+}
+
+.account-requests-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
 }
