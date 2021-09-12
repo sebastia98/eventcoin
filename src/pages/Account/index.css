@@ -10,7 +10,7 @@
     justify-content: center;
 }
 
-.account-services-container p {
+.account-services-container p, .account-requests-container div p {
     font-size: 25px;
     padding: 10px 0;
 }
