@@ -1,7 +1,9 @@
+import React from "react"
 import { RequestRow } from "../RequestRow"
 import "./index.css"
 
 export const TableRequests = (props) => {
+
     return (
         <div className = "table-requests-container">
             <table className = "table-requests">
@@ -12,7 +14,7 @@ export const TableRequests = (props) => {
                     <th className = "request-options"></th>
                 </thead>
                 <tbody>
-
+                    {props.requests?.map((request, index) => <RequestRow key = {index} request = {request} confirmRequest = {props.confirmRequest}/>)}
                 </tbody>
             </table>
         </div>

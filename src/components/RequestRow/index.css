@@ -1,0 +1,25 @@
+.request-row{
+    background-color: #BBC5AA;
+}
+
+.request-row td{
+    text-align: center;
+    color: #090C02;
+    padding: 20px;
+    font-size: 16px;
+}
+
+.button-confirm {
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    background-color: #DDE2C6;
+    color: #090c02;
+}
+
+.button-confirm:hover {
+    background-color: #A72608;
+    cursor: pointer;
+    color: #DDE2C6;
+    transition: 0.2s;
+}
