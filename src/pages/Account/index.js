@@ -5,11 +5,15 @@ import { TableServices } from '../../components/TableServices';
 import { FORM_SERVICE_URL } from '../../utils/urls';
 import "./index.css";
 
-function Account() {
+export const Account = () => {
 
     const userLogged = JSON.parse(sessionStorage.getItem("userLogged"));
 
-    const [data, setData] = useState([]);
+    const [services, setServices] = useState([]);
+
+    const [userOwnerRequests, setUserOwnerRequests] = useState([])
+    
+    const [userApplicantRequests, setUserApplicantRequests] = useState([])
 
     const deleteService = (service) => 
         new Promise((resolve, reject) => fetch("/service/deleteService", {
@@ -19,11 +23,11 @@ function Account() {
                 "Content-Type": "application/json"},
             body: JSON.stringify(service)
         })
-        .then(() => resolve(readServices()))
+        .then(() => resolve(readUserServices()))
         .catch(error => reject(error)));
 
-    const readServices = () => {
-        fetch("/service/readServices", {
+    const readUserServices = () => {
+        fetch(`/service/readUserServices?userId=${userLogged._id}`, {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
@@ -31,22 +35,71 @@ function Account() {
         })
         .then(response => response.json())
         .then(responseData => {
-            setData(responseData.serv)
-            console.log(data);
+            setServices(responseData.serv)
         })
         .catch(error => console.log(error))
     };
 
-    const readRequests = () => {
-        
+    const readUserOwnerRequests = () => {
+        fetch(`/serviceRequest/readUserOwnerRequests?userId=${userLogged._id}`, {
+            method: "GET",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"},
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            setUserOwnerRequests(responseData.requests)
+        })
+        .catch(error => console.log(error))
     }
 
-    const filterUserServices = () => {
-        return data.filter(serv => JSON.stringify(serv.userId) === JSON.stringify(userLogged));
+    const readUserApplicantRequests = () => {
+        fetch(`/serviceRequest/readUserApplicantRequests?userId=${userLogged._id}`, {
+            method: "GET",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"},
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            setUserApplicantRequests(responseData.requests)
+        })
+        .catch(error => console.log(error))
+    }
+
+    const confirmApplicantRequest = (id) => {
+        console.log(id)
+        fetch("/serviceRequest/confirmApplicantRequest", {
+            method: "POST",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id})
+        })
+        .then(message => message)
+        .catch(error => error)
+    }
+
+    const confirmOwnerRequest = (id) => {
+        console.log(id)
+        fetch("/serviceRequest/confirmOwnerRequest", {
+            method: "POST",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id})
+        })
+        .then(message => message)
+        .catch(error => error)
     }
 
     useEffect(() => {
-        readServices()
+        readUserServices()
+        readUserOwnerRequests()
+        readUserApplicantRequests()
     }, []);
 
     return (
@@ -57,19 +110,17 @@ function Account() {
                 </div>
                 <div className = "account-services-container">
                     <p>Your services: </p>
-                    <TableServices userService = {true} deleteService = {deleteService} data = {filterUserServices()}></TableServices>
+                    <TableServices userService = {true} deleteService = {deleteService} data = {services}></TableServices>
                 </div>
                 <div className = "account-requests-container">
                     <div>
-                        <TableRequests></TableRequests>
+                        <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest}></TableRequests>
                     </div>
                     <div>
-                        <TableRequests></TableRequests>
+                        <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest}></TableRequests>
                     </div>
                 </div>
             </div>
         </div>
     )
 }
-
-export default Account
