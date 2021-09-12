@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {Navbar} from './components/Navbar';
 import {Home} from './pages/Home'
 import {Footer} from './components/Footer'
-import Account from './pages/Account';
+import {Account} from './pages/Account';
 import {SignUp} from './pages/SignUp';
 import LongIn from './pages/LogIn';
 import {ServiceForm} from './pages/ServiceForm';

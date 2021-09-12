@@ -7,8 +7,8 @@ export const Home = () => {
 
     const [data, setData] = useState([]);
 
-    const readServices = (filter) => {
-        fetch(`/service/readServices${filter ? `?filter=${filter}` : ""}`, {
+    const readServices = () => {
+        fetch("/service/readServices", {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
