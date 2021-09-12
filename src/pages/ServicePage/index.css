@@ -79,3 +79,8 @@
     color: #E6EED6;
     cursor: pointer;
 }
+
+.not-logged-container p {
+    color: #A72608;
+    font-size: 25px;
+}
