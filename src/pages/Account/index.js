@@ -69,7 +69,7 @@ export const Account = () => {
     }
 
     const confirmApplicantRequest = (id) => {
-        console.log(id)
+
         fetch("/serviceRequest/confirmApplicantRequest", {
             method: "POST",
             headers: {
@@ -83,7 +83,7 @@ export const Account = () => {
     }
 
     const confirmOwnerRequest = (id) => {
-        console.log(id)
+        
         fetch("/serviceRequest/confirmOwnerRequest", {
             method: "POST",
             headers: {
@@ -114,10 +114,10 @@ export const Account = () => {
                 </div>
                 <div className = "account-requests-container">
                     <div>
-                        <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest}></TableRequests>
+                        <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest} participation = {"owner"}></TableRequests>
                     </div>
                     <div>
-                        <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest}></TableRequests>
+                        <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"}></TableRequests>
                     </div>
                 </div>
             </div>

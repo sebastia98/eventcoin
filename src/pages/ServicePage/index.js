@@ -1,36 +1,44 @@
 import React, {useEffect, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { TableUnavailableRequests } from '../../components/TableUnavaibleRequest';
+import { ACCOUNT_URL } from '../../utils/urls';
 
 import './index.css';
 
 export const ServicePage = () => {
 
+    const history = useHistory()
+
     const {serviceId} = useParams();
 
-    //const [error, setError] = useState({})
+    const [error, setError] = useState("")
     const userLogged = JSON.parse(sessionStorage.getItem("userLogged"))
+    
     const [requestInfo, setRequestInfo] = useState({})
+    const [event, setEvent] = useState({});
 
-    const obtainService = () => {
-        fetch(`/service/obtainService?id=${serviceId}`, {
-            method: "GET",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"}
-            
-        })
-        .then(response => response.json())
-        .then(response => {
-            setRequestInfo(response.service)
-            console.log(requestInfo)
-        })
-        .catch(error => console.log(error))
-    };
+    const [requests, setRequests] = useState([])
+    
 
-    const sendRequestService = (e) => {
+    const obtainService = () => 
+        new Promise((resolve, reject) => {
+            fetch(`/service/obtainService?id=${serviceId}`, {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"}
+                
+            })
+            .then(response => response.json())
+            .then(response => resolve(response.service))
+            .catch(error => console.log(error))
+        })
+    
+
+    const registerRequestService = (e) => {
 
         e.preventDefault();
-
+        
         fetch("/serviceRequest/registerRequestService", {
             method: "POST",
             headers: {
@@ -40,23 +48,46 @@ export const ServicePage = () => {
             body: JSON.stringify(event)
         })
         .then(response => response.json())
-        .then(response => response.requestCreated === false && document.getElementById("error-message"))
+        .then(response => {
+            if(!response.requestCreated) {
+                throw new Error(response.message)
+            }
+            history.push(ACCOUNT_URL)
+        })
+        .catch(error => {
+            console.log(error)
+            setError(error.message)})
     }
 
-    const [event, setEvent] = useState({});
+    const obtainRequests = (serviceId) => {
+        console.log(serviceId)
+        if(serviceId) {
+            fetch(`/serviceRequest/obtainServiceRequests?serviceId=${serviceId}`, {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"}
+            })
+            .then(response => response.json())
+            .then(response => setRequests(response.requests))
+            .catch(error => console.log(error))
+        }
+    }
     
     useEffect(() => {
-        setEvent({...event, 
-        serviceOwnerId : requestInfo?.userId?._id, 
-        serviceId : requestInfo?._id, 
-        serviceApplicantId : userLogged?._id, 
-        ownerState: "pennding",
-        applicantState: "pennding"
-    })}, [sessionStorage])
-
-    useEffect(() => {
         obtainService()
-    }, []);
+            .then((service) => {
+                setEvent({...event, 
+                    serviceOwnerId : service?.userId?._id, 
+                    serviceId : service?._id, 
+                    serviceApplicantId : userLogged?._id, 
+                    ownerState: "pennding",
+                    applicantState: "pennding"
+                })
+            obtainRequests(service?._id)
+            setRequestInfo(service)
+            
+        })}, [])
 
     const requestForm = 
         <div className = "request-form-container">
@@ -86,9 +117,9 @@ export const ServicePage = () => {
                             (e) => {setEvent({...event, additionalInfo: e.target.value})}
                         }/>
                     </div>
-                    <label id = "error-message"></label>
+                    {error && <label id = "error-message">{error}</label>}
                     <div className = "submit-block">
-                        <input type = "submit" value = "Request" onClick = {sendRequestService}></input>
+                        <input type = "submit" value = "Request" onClick = {registerRequestService}></input>
                     </div>
                 </div>
             </form>
@@ -108,16 +139,16 @@ export const ServicePage = () => {
                         <hr></hr>
                         <p>{requestInfo.description}</p>
                         <p>{requestInfo?.references}</p>
-                        <p className = "rate">{requestInfo.service?.rate} € for hour</p>
+                        <p className = "rate">{requestInfo?.rate} € for hour</p>
                         <hr></hr>
                     </div>   
                     <div className = "user-details">
                         <p className = "fullname">{requestInfo.userId?.fullName}</p>
                         <p>{requestInfo.userId?.email}</p>
-                        <p>{requestInfo.userId?.phoneNumber}</p>
-                        
+                        <p>{requestInfo.userId?.phoneNumber}</p>                        
                     </div>
                 </div>
+                {requests && <TableUnavailableRequests requests = {requests}></TableUnavailableRequests>}
             </div>
            {userLogged ? requestForm : notLogged}
         </div>
