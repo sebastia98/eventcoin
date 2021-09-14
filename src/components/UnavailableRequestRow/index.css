@@ -1,0 +1,10 @@
+.unavailable-request-row{
+    background-color: #BBC5AA;
+}
+
+.unavailable-request-row td{
+    text-align: center;
+    color: #090C02;
+    padding: 10px 20px;
+    font-size: 14px;
+}
