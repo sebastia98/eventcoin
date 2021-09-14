@@ -7,7 +7,7 @@ export const Navbar = () => {
     const navbarAccount = 
             <div className = "navbar-account">
                 <Link to = {ACCOUNT_URL} className = "navbar-user" >
-                    {JSON.parse(sessionStorage.getItem("userLogged"))?.fullName + " "}<i class="far fa-user"></i>
+                    {JSON.parse(sessionStorage.getItem("userLogged"))?.fullName + " "}<i className="far fa-user"></i>
                 </Link>
                 <p className = "credits">
                     {JSON.parse(sessionStorage.getItem("userLogged"))?.credits} tokens
