@@ -1,0 +1,13 @@
+
+.unavailable-requests-container p {
+    font-size: 19px;
+    color: #A72608;
+    margin-bottom: 10px;
+}
+
+.unavailable-requests-header tr th {
+    background-color: #090C02;
+    color: #e6eed6;
+    font-size: 19px;
+    padding: 5px 20px;
+}
