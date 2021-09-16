@@ -8,16 +8,28 @@ export const RequestRow = (props) => {
 
     const checkApplicantConfirmed =  props?.participation === "applicant" && props?.request.applicantState === "done"
 
-    const checkParticipation = ( checkOwnerConfirmed || checkApplicantConfirmed) ?
+    const confirmedOrOptions = checkOwnerConfirmed || checkApplicantConfirmed ?
             <p>Confirmed</p> :
-            <button className="button-confirm" onClick = {() => {props.confirmRequest(props.request._id)}}>Confirm</button>
+            <div>
+                <button className="button-confirm" onClick = {() => {props.confirmRequest(props.request._id)}}>Confirm</button>
+                {props?.participation === "owner" && <button className="button-reject" onClick = {() => props?.rejectRequest(props?.request._id)}>Reject</button>}
+            </div>
+    
+    const rejectOptions = 
+        <div>
+            <p>Rejected</p>
+            {props?.participation === "applicant" && <button className = "button-delete" onClick = {() => props?.deleteRequest(props?.request._id)}>Delete</button>}
+        </div>
+
+    const options = props?.request.ownerState === "rejected" ? rejectOptions : confirmedOrOptions
+           
 
     return (
         <tr className = "request-row">
             <td>{props?.request.serviceId?.offeredServices}</td>
             <td>{props?.request.dateRequestService.substring(0, 10)}</td>
             <td>{props?.request.startRequestService + " - " + props?.request.endRequestService}</td>
-            <td>{checkParticipation}</td>
+            <td>{options}</td>
         </tr>
     )
 }
