@@ -14,7 +14,12 @@ export const TableRequests = (props) => {
                     <th className = "request-options"></th>
                 </thead>
                 <tbody>
-                    {props.requests?.map((request, index) => <RequestRow key = {index} request = {request} confirmRequest = {props.confirmRequest} participation = {props.participation}/>)}
+                    {props.requests?.map((request, index) => <RequestRow key = {index} 
+                                                                         request = {request} 
+                                                                         confirmRequest = {props.confirmRequest} 
+                                                                         participation = {props.participation} 
+                                                                         rejectRequest = {props.rejectRequest}
+                                                                         deleteRequest = {props.deleteRequest}/>)}
                 </tbody>
             </table>
         </div>
