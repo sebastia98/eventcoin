@@ -28,7 +28,7 @@ export const Home = () => {
         <div className="home-page">
             <div>
                 <p className = "available-services">Available services</p>
-                <TableServices data = {data}></TableServices>
+                {data.length === 0 ? <p>There aren't available services</p> : <TableServices data = {data}></TableServices>}
             </div>
         </div>
     )
