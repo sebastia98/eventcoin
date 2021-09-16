@@ -96,6 +96,46 @@ export const Account = () => {
         .catch(error => error)
     }
 
+    const rejectRequest = (id) => {
+        fetch("/serviceRequest/rejectRequest", {
+            method: "POST",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id})
+        })
+        .then(message => message)
+        .catch(error => error)
+    }
+
+    const deleteRequest = (id) => {
+        console.log(id)
+        fetch("/serviceRequest/deleteRequest", {
+            method: "DELETE",
+            headers: {
+                "access-control-allow-origin" : "*",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id})
+        })
+        .then(message => message)
+        .catch(error => error)
+    }
+
+
+    const servicesTable = services.length === 0 ? 
+                                <p>You don't have pushed services</p> : 
+                                <TableServices userService = {true} deleteService = {deleteService} data = {services}></TableServices>
+
+    const ownerRequestsTable = userOwnerRequests.length === 0 ? 
+                                <p>You don't have any request</p> : 
+                                <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest} participation = {"owner"} rejectRequest = {rejectRequest}></TableRequests>
+
+    const applicantRequestsTable = userApplicantRequests.length === 0 ? 
+                                <p>You haven't requested any service</p> 
+                                : <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"} deleteRequest = {deleteRequest}></TableRequests>
+
     useEffect(() => {
         readUserServices()
         readUserOwnerRequests()
@@ -110,15 +150,11 @@ export const Account = () => {
                 </div>
                 <div className = "account-services-container">
                     <p>Your services: </p>
-                    <TableServices userService = {true} deleteService = {deleteService} data = {services}></TableServices>
+                    {servicesTable}  
                 </div>
                 <div className = "account-requests-container">
-                    <div>
-                        <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest} participation = {"owner"}></TableRequests>
-                    </div>
-                    <div>
-                        <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"}></TableRequests>
-                    </div>
+                    <div>{ownerRequestsTable}</div>
+                    <div>{applicantRequestsTable}</div>
                 </div>
             </div>
         </div>
