@@ -1,12 +1,28 @@
 .home-page {
-    height: 61vh;
+    min-height: 61vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.services-container {
+    width: 100%;
+}
+
 .available-services{
-    font-size: 30px;
-    padding: 0 0 30px ;
+    font-size: 7vw;
     text-align: center;
 }
+
+@media (max-width: 520px) {
+    .available-services{
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 700px) {
+    .available-services{
+        font-size: 49px;
+    }
+}
+

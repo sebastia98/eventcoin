@@ -26,7 +26,7 @@ export const Home = () => {
 
     return (
         <div className="home-page">
-            <div>
+            <div className = "services-container">
                 <p className = "available-services">Available services</p>
                 {data.length === 0 ? <p>There aren't available services</p> : <TableServices data = {data}></TableServices>}
             </div>

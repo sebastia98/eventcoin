@@ -7,7 +7,6 @@ import { FORM_SERVICE_URL } from '../../utils/urls';
 export const Service = (props) =>  {
 
     const history = useHistory();
-    console.log(props)
     
     return (
         <tr className="service-container">
@@ -15,7 +14,12 @@ export const Service = (props) =>  {
             <td className="offered-services">{props.service?.offeredServices}</td>
             <td className="service-price">{props.service?.rate} €</td>
             <td className="references">{props.service?.references}</td>
-            {!props.userService && <Link to = {`${SERVICE_URL}/${props.service?._id}`} className = "view-more"><td><button className = "button-more">View</button></td> </Link>}
+            {!props.userService && 
+                <td className = "view-more">
+                    <Link to = {`${SERVICE_URL}/${props.service?._id}`}>
+                        <button className = "button-more">View</button>
+                    </Link>
+                </td>}
             {props.userService && 
                 <td className = "user-options">
                     <button className = "edit" onClick = { () => history.push(FORM_SERVICE_URL, props.service)}>Edit</button>

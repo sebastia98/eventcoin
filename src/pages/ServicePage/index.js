@@ -84,10 +84,10 @@ export const ServicePage = () => {
                     ownerState: "pennding",
                     applicantState: "pennding"
                 })
-            obtainRequests(service?._id)
-            setRequestInfo(service)
-            
-        })}, [])
+                obtainRequests(service?._id)
+                setRequestInfo(service)})
+            .catch(error => console.log(error))
+    }, [])
 
     const requestForm = 
         <div className = "request-form-container">
@@ -105,9 +105,9 @@ export const ServicePage = () => {
                             (e) => {setEvent({...event, startRequestService: e.target.value})}
                         }/>
                     </div>
-                    <div className = "start-end-block">
-                        <span>Choose end time:</span>
-                        <input className = "input-end-time"type = "time" required onChange = {
+                    <div className = "time-block">
+                        <span>Choose work hours:</span>
+                        <input className = "input-end-time" type = "time" required onChange = {
                             (e) => {setEvent({...event, endRequestService: e.target.value})}
                         }/>
                     </div>

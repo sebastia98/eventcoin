@@ -110,7 +110,6 @@ export const Account = () => {
     }
 
     const deleteRequest = (id) => {
-        console.log(id)
         fetch("/serviceRequest/deleteRequest", {
             method: "DELETE",
             headers: {
@@ -123,6 +122,21 @@ export const Account = () => {
         .catch(error => error)
     }
 
+    const displayRecivedRequests = () => {
+        let recivedRequests = document.getElementById("owner-requests")
+        let sendRequests = document.getElementById("applicant-requests") 
+        
+        recivedRequests.style.display = "block"
+        sendRequests.style.display = "none"
+    }
+
+    const displaySendRequests = () => {
+        let recivedRequests = document.getElementById("owner-requests")
+        let sendRequests = document.getElementById("applicant-requests")
+
+        recivedRequests.style.display = "none"
+        sendRequests.style.display = "block"
+    }
 
     const servicesTable = services.length === 0 ? 
                                 <p>You don't have pushed services</p> : 
@@ -148,14 +162,17 @@ export const Account = () => {
                 <div className = "add-service">
                     <Link to = {FORM_SERVICE_URL}><button className = "add-service-button">Add new service</button></Link>
                 </div>
-                <div className = "account-services-container">
-                    <p>Your services: </p>
-                    {servicesTable}  
+                {servicesTable}
+                <div className = "request-buttons">
+                    <button onClick = {displayRecivedRequests}>
+                        Show recived requests
+                    </button>
+                    <button onClick = {displaySendRequests}>
+                        Show send requests
+                    </button>
                 </div>
-                <div className = "account-requests-container">
-                    <div>{ownerRequestsTable}</div>
-                    <div>{applicantRequestsTable}</div>
-                </div>
+                <div id = "owner-requests">{ownerRequestsTable}</div>
+                <div id = "applicant-requests">{applicantRequestsTable}</div>
             </div>
         </div>
     )

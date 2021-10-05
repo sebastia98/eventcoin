@@ -8,11 +8,12 @@ import {Account} from './pages/Account';
 import {SignUp} from './pages/SignUp';
 import LongIn from './pages/LogIn';
 import {ServiceForm} from './pages/ServiceForm';
-import { ACCOUNT_URL, SERVICE_URL, FORM_SERVICE_URL, HOME_URL, LOG_IN_URL, SERVICES_URL, SIGN_UP_URL } from "./utils/urls";
+import { ACCOUNT_URL, SERVICE_URL, FORM_SERVICE_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL } from "./utils/urls";
 import './styles/index.css';
 import {ServicePage} from "./pages/ServicePage";
 
 function App() {
+
   return (
     <div className="page">
       <Router>

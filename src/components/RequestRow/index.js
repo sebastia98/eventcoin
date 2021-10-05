@@ -17,7 +17,6 @@ export const RequestRow = (props) => {
     
     const rejectOptions = 
         <div>
-            <p>Rejected</p>
             {props?.participation === "applicant" && <button className = "button-delete" onClick = {() => props?.deleteRequest(props?.request._id)}>Delete</button>}
         </div>
 

@@ -5,14 +5,15 @@
 .service-container td{
     text-align: center;
     color: #090C02;
-    padding: 20px;
-    font-size: 20px;
+    font-size: 1.5vw;
+    padding: 5px 0;
 }
 
 .button-more {
-    padding: 10px 30px;
+    padding: 4px 0;
+    width: 80%;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 1vw;
     background-color: #DDE2C6;
     color: #090c02;
 }
@@ -24,17 +25,11 @@
     transition: 0.2s;
 }
 
-.edit {
-    padding: 10px 30px;
-}
-
-.delete {
-    padding: 10px 20px;
-}
-
 .edit, .delete {
+    width: 45%;
+    font-size: 1vw;
+    padding: 4px 0;
     border-radius: 10px;
-    font-size: 16px;
     background-color: #DDE2C6;
     color: #090c02;
 }
@@ -44,4 +39,16 @@
     cursor: pointer;
     color: #DDE2C6;
     transition: 0.2s;
+}
+
+@media (max-width: 450px) {
+    .service-container td {
+        font-size: 6.75 px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .service-container td {
+        font-size: 15px;
+    }
 }

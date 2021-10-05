@@ -1,3 +1,16 @@
+.unavailable-requests-container {
+    width: 100%;
+    
+}
+
+.unavailable-requests-table {
+    width: 100%;
+}
+
+.unavailable-requests-table > * > tr {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
 
 .unavailable-requests-container p {
     font-size: 19px;

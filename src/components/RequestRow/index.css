@@ -5,19 +5,20 @@
 .request-row td{
     text-align: center;
     color: #090C02;
-    padding: 20px;
-    font-size: 16px;
+    font-size: 1.2vw;
+    padding: 5px 0;
 }
 
-.button-confirm {
-    padding: 5px 15px;
+.button-confirm, .button-reject, .button-delete {
+    width: 45%;
+    font-size: 1vw;
+    padding: 4px 0;
     border-radius: 10px;
-    font-size: 14px;
     background-color: #DDE2C6;
     color: #090c02;
 }
 
-.button-confirm:hover {
+.button-confirm:hover, .button-reject:hover, .button-delete:hover {
     background-color: #A72608;
     cursor: pointer;
     color: #DDE2C6;

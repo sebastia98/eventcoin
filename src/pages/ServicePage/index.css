@@ -1,15 +1,17 @@
 .service-page {
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
+    gap: 2em;
 }
 
 .service-info-container {
     background-color: white;
     border: 1px solid black;
-    border-radius: 10px; 
-    padding: 30px 150px;
+    border-radius: 10px;
+    padding: 30px 54px;
+    flex: 1 1 40%;
 }
 
 .service-info div{
@@ -33,11 +35,9 @@
 }
 
 .request-form-container {
-    width: 350px;
-}
-
-.inputs-container {
-    width: 400px;
+    padding: 5px 16px;
+    min-width: 200px;
+    flex: 1 1 40%;
 }
 
 .inputs-container div{
@@ -51,7 +51,7 @@
 }
 
 .inputs-container div input{
-    padding: 10px;
+    padding: 6px;
     border-radius: 10px;
 }
 

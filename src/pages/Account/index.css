@@ -4,15 +4,12 @@
     justify-content: center;
     align-items: center;
 }
-
+.account-wrapper {
+    width: 100%;
+}
 .add-service {
     display: flex;
     justify-content: center;
-}
-
-.account-services-container p, .account-requests-container div p {
-    font-size: 25px;
-    padding: 10px 0;
 }
 
 .add-service-button {
@@ -22,15 +19,26 @@
     background-color: #E6EED6;
 }
 
-.add-service-button:hover {
+.add-service-button:hover, .request-buttons button:hover {
     background-color: #A72608;
     transition: 0.2s;
     color: #E6EED6;
     cursor: pointer;
 }
 
-.account-requests-container {
+.request-buttons {
     display: flex;
-    justify-content: space-around;
-    padding: 50px 0;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.request-buttons button {
+    width: 25%;
+    margin: 2px;
+    padding: 8px 0;
+    border-radius: 10px;
+}
+
+#applicant-requests {
+    display: none;
 }
