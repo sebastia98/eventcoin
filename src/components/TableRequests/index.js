@@ -11,6 +11,7 @@ export const TableRequests = (props) => {
                     <th>Service</th>
                     <th>Date</th>
                     <th>Schedule</th>
+                    <th>Counteroffer</th>
                     <th className = "request-options"></th>
                 </thead>
                 <tbody>

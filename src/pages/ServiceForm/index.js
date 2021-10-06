@@ -1,9 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
+import AuthContext from '../../contexts/authContext';
 import { ACCOUNT_URL } from '../../utils/urls';
 import './index.css';
 
 export const ServiceForm = () => {
+
+    const {user} = useContext(AuthContext)
+
 
     const processServiceData = (e) => {
 
@@ -28,7 +32,7 @@ export const ServiceForm = () => {
                             "access-control-allow-origin" : "*",
                             "Content-Type": "application/json"
                         },
-                body: JSON.stringify({...service, userId : JSON.parse(sessionStorage.getItem("userLogged"))._id})
+                body: JSON.stringify({...service, userId : user?._id})
                 })
                 .then(response => resolve(response))
                 .catch(error => reject(error))
@@ -42,7 +46,7 @@ export const ServiceForm = () => {
                             "access-control-allow-origin" : "*",
                             "Content-Type": "application/json"
                         },
-                body: JSON.stringify({...service, userId : JSON.parse(sessionStorage.getItem("userLogged"))._id})
+                body: JSON.stringify({...service, userId : user?._id})
                 })
                 .then(response => resolve(response))
                 .catch(error => reject(error))

@@ -1,33 +1,36 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import { TableRequests } from "../../components/TableRequests";
 import { TableServices } from '../../components/TableServices';
+import AuthContext from '../../contexts/authContext';
 import { FORM_SERVICE_URL } from '../../utils/urls';
 import "./index.css";
 
 export const Account = () => {
 
-    const userLogged = JSON.parse(sessionStorage.getItem("userLogged"));
+    const {user} = useContext(AuthContext);
 
     const [services, setServices] = useState([]);
+
+    const [serviceDeleted, setServiceDeleted] = useState(false)
 
     const [userOwnerRequests, setUserOwnerRequests] = useState([])
     
     const [userApplicantRequests, setUserApplicantRequests] = useState([])
 
     const deleteService = (service) => 
-        new Promise((resolve, reject) => fetch("/service/deleteService", {
+        fetch("/service/deleteService", {
             method: "DELETE",
             headers: {
                 "access-control-allow-origin" : "*",
                 "Content-Type": "application/json"},
             body: JSON.stringify(service)
         })
-        .then(() => resolve(readUserServices()))
-        .catch(error => reject(error)));
+        .then(() => setServiceDeleted(true))
+        .catch(error => console.log(error));
 
     const readUserServices = () => {
-        fetch(`/service/readUserServices?userId=${userLogged._id}`, {
+        fetch(`/service/readUserServices?userId=${user?._id}`, {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
@@ -41,7 +44,7 @@ export const Account = () => {
     };
 
     const readUserOwnerRequests = () => {
-        fetch(`/serviceRequest/readUserOwnerRequests?userId=${userLogged._id}`, {
+        fetch(`/serviceRequest/readUserOwnerRequests?userId=${user?._id}`, {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
@@ -55,7 +58,7 @@ export const Account = () => {
     }
 
     const readUserApplicantRequests = () => {
-        fetch(`/serviceRequest/readUserApplicantRequests?userId=${userLogged._id}`, {
+        fetch(`/serviceRequest/readUserApplicantRequests?userId=${user?._id}`, {
             method: "GET",
             headers: {
                 "access-control-allow-origin" : "*",
@@ -150,11 +153,17 @@ export const Account = () => {
                                 <p>You haven't requested any service</p> 
                                 : <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"} deleteRequest = {deleteRequest}></TableRequests>
 
+
+
     useEffect(() => {
-        readUserServices()
         readUserOwnerRequests()
         readUserApplicantRequests()
-    }, []);
+        readUserServices()
+
+        if (serviceDeleted) {
+            setServiceDeleted(false)
+        }
+    }, [serviceDeleted]);
 
     return (
         <div className = "account-page">

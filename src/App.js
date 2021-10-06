@@ -11,11 +11,13 @@ import {ServiceForm} from './pages/ServiceForm';
 import { ACCOUNT_URL, SERVICE_URL, FORM_SERVICE_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL } from "./utils/urls";
 import './styles/index.css';
 import {ServicePage} from "./pages/ServicePage";
+import { AuthContextProvider } from "./contexts/authContext";
 
 function App() {
 
   return (
     <div className="page">
+      <AuthContextProvider>
       <Router>
           <Navbar/>
           <Switch>
@@ -30,7 +32,7 @@ function App() {
       <div className = "footer">
         <Footer/>
       </div>
-
+      </AuthContextProvider>
     </div>
   );
 }

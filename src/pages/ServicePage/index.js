@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { TableUnavailableRequests } from '../../components/TableUnavaibleRequest';
+import AuthContext from '../../contexts/authContext';
 import { ACCOUNT_URL } from '../../utils/urls';
 
 import './index.css';
@@ -12,7 +13,8 @@ export const ServicePage = () => {
     const {serviceId} = useParams();
 
     const [error, setError] = useState("")
-    const userLogged = JSON.parse(sessionStorage.getItem("userLogged"))
+    
+    const {user} = useContext(AuthContext)
     
     const [requestInfo, setRequestInfo] = useState({})
     const [event, setEvent] = useState({});
@@ -80,9 +82,7 @@ export const ServicePage = () => {
                 setEvent({...event, 
                     serviceOwnerId : service?.userId?._id, 
                     serviceId : service?._id, 
-                    serviceApplicantId : userLogged?._id, 
-                    ownerState: "pennding",
-                    applicantState: "pennding"
+                    serviceApplicantId : user?._id, 
                 })
                 obtainRequests(service?._id)
                 setRequestInfo(service)})
@@ -94,27 +94,27 @@ export const ServicePage = () => {
             <form className = "form-service-request">
                 <div className = "inputs-container">
                     <div className = "date-block">
-                        <span>Choose date:</span>
+                        <span>*Choose date:</span>
                         <input className = "input-date" type = "date" required onChange = {
                             (e) => {setEvent({...event, dateRequestService: e.target.value})
                         }}/>
                     </div>
                     <div className = "start-time-block">
-                        <span>Choose start time:</span>
+                        <span>*Choose start time:</span>
                         <input className = "input-start-time"type = "time" required onChange = {
                             (e) => {setEvent({...event, startRequestService: e.target.value})}
                         }/>
                     </div>
                     <div className = "time-block">
-                        <span>Choose work hours:</span>
+                        <span>*Choose work hours:</span>
                         <input className = "input-end-time" type = "time" required onChange = {
                             (e) => {setEvent({...event, endRequestService: e.target.value})}
                         }/>
                     </div>
                     <div className = "textarea-block">
-                        <span>Any information to add:</span>
-                        <textarea className = "input-textarea" type = "textarea" placeholder = "Describe any relevant information" required onChange = {
-                            (e) => {setEvent({...event, additionalInfo: e.target.value})}
+                        <span>You can suggest a new rate:</span>
+                        <input className = "input-segested-price" type = "number" placeholder = "Optional" required onChange = {
+                            (e) => {setEvent({...event, suggestedPrice: e.target.value})}
                         }/>
                     </div>
                     {error && <label id = "error-message">{error}</label>}
@@ -150,7 +150,7 @@ export const ServicePage = () => {
                 </div>
                 {requests && <TableUnavailableRequests requests = {requests}></TableUnavailableRequests>}
             </div>
-           {userLogged ? requestForm : notLogged}
+           {Object.keys(user).length ? requestForm : notLogged }
         </div>
     )
 }

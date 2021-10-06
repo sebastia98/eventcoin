@@ -17,7 +17,9 @@ export const RequestRow = (props) => {
     
     const rejectOptions = 
         <div>
-            {props?.participation === "applicant" && <button className = "button-delete" onClick = {() => props?.deleteRequest(props?.request._id)}>Delete</button>}
+            {props?.participation === "applicant" ? 
+                <button className = "button-delete" onClick = {() => props?.deleteRequest(props?.request._id)}>Delete</button> :
+                <p>Rejected</p>}
         </div>
 
     const options = props?.request.ownerState === "rejected" ? rejectOptions : confirmedOrOptions
@@ -28,6 +30,7 @@ export const RequestRow = (props) => {
             <td>{props?.request.serviceId?.offeredServices}</td>
             <td>{props?.request.dateRequestService.substring(0, 10)}</td>
             <td>{props?.request.startRequestService + " - " + props?.request.endRequestService}</td>
+            <td>{props?.request.suggestedPrice ? props?.request?.suggestedPrice + " €" : " - "}</td>
             <td>{options}</td>
         </tr>
     )

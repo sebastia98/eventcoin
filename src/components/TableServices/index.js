@@ -16,7 +16,7 @@ export const TableServices = (props) => {
                     <th></th>
                 </thead>
                 <tbody className = "table-body">
-                    {props.data.map(service => <Service service = {service} userService = {props.userService} deleteService = {props.deleteService}></Service>)}
+                    {props.data.map((service, index) => <Service key = {index} service = {service} userService = {props.userService} deleteService = {props.deleteService}></Service>)}
                 </tbody>
             </table>
         </div>

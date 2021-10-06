@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {useHistory} from 'react-router-dom';
+import AuthContext from '../../contexts/authContext';
 import { HOME_URL } from '../../utils/urls';
 import './index.css';
 
 function LogIn() {
 
     const history = useHistory();
+
+    const context = useContext(AuthContext)
 
     const sendCredentials = () => 
         new Promise((resolve, reject) => {
@@ -26,9 +29,9 @@ function LogIn() {
 
         sendCredentials()
             .then(response => response.json())
-            .then(responseBody => {
-                if (responseBody.user) {
-                    sessionStorage.setItem("userLogged", JSON.stringify(responseBody.user));
+            .then(({user}) => {
+                if (user) {
+                    context.setUser(user)
                     setInvalidCredentials(false);
                     history.push(HOME_URL)
                 } else {

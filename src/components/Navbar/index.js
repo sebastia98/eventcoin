@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom'
 import './index.css';
 
 import { ACCOUNT_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL } from '../../utils/urls';
+import AuthContext from '../../contexts/authContext';
 
 export const Navbar = () => {
 
     const [credits, setCredits] = useState();
 
-    const userLogged = JSON.parse(sessionStorage.getItem("userLogged"))
+    const {user} = useContext(AuthContext)
 
     const readUserCredits = () => {
-      fetch(`/user/getCredits?userId=${userLogged?._id}`, {
+      fetch(`/user/getCredits?userId=${user?._id}`, {
           method: "GET",
           headers: {
               "access-control-allow-origin" : "*",
@@ -26,15 +27,15 @@ export const Navbar = () => {
   };
 
   useEffect(() => {
-      if(userLogged) {
+      if(Object.keys(user).length) {
         readUserCredits();
       }
-  }, [])
+  }, [user])
 
     const navbarAccount = 
             <div className = "navbar-account">
                 <Link to = {ACCOUNT_URL} className = "navbar-user" >
-                    {JSON.parse(sessionStorage.getItem("userLogged"))?.fullName + " "}<i className="far fa-user"></i>
+                    {user?.fullName}<i className="far fa-user"></i>
                 </Link>
                 <p className = "credits">
                     {credits} tokens
@@ -64,7 +65,7 @@ export const Navbar = () => {
                     </Link>
                 </div>
                 <div className = "navbar-item">
-                    {sessionStorage.getItem("userLogged") == null ? navbarUserOptions : navbarAccount}
+                    {Object.keys(user).length ? navbarAccount : navbarUserOptions}
                 </div>
             </nav>
         </div>

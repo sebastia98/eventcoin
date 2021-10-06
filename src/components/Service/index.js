@@ -6,7 +6,7 @@ import { FORM_SERVICE_URL } from '../../utils/urls';
 
 export const Service = (props) =>  {
 
-    const history = useHistory();
+    const history = useHistory()
     
     return (
         <tr className="service-container">
@@ -22,7 +22,7 @@ export const Service = (props) =>  {
                 </td>}
             {props.userService && 
                 <td className = "user-options">
-                    <button className = "edit" onClick = { () => history.push(FORM_SERVICE_URL, props.service)}>Edit</button>
+                    <button className = "edit" onClick = {() => history.push(FORM_SERVICE_URL, props.service)}>Edit</button>
                     <button className = "delete" onClick = {() => props.deleteService(props.service)}>Delete</button>
                 </td>}
         </tr>
