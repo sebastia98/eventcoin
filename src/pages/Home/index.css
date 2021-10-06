@@ -1,8 +1,20 @@
 .home-page {
     min-height: 61vh;
+}
+
+.input-container {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 40px 0 0 0;
+}
+
+.input-filter {
+    width: 20%;
+    padding: 5px;
+    border: 1px solid;
+    border-radius: 15px;
+    margin-right: 5px;
 }
 
 .services-container {
