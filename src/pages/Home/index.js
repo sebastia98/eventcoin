@@ -23,10 +23,10 @@ export const Home = () => {
 
     const filterServices = (filter, services) => {
         if(filter) {
-            const filteredServices = services.filter(service => service.userId.username.toLowerCase().includes(filter) || 
-                                                                service.userId.fullName.toLowerCase().includes(filter) || 
-                                                                service.offeredServices.toLowerCase().includes(filter) ||
-                                                                service.references.toLowerCase().includes(filter))
+            const filteredServices = services.filter(service => service.userId.username.toLowerCase().includes(filter.toLowerCase()) || 
+                                                                service.userId.fullName.toLowerCase().includes(filter.toLowerCase()) || 
+                                                                service.offeredServices.toLowerCase().includes(filter.toLowerCase()) ||
+                                                                service.references.toLowerCase().includes(filter.toLowerCase()))
             setData(filteredServices)
         } else {
             setData(services)

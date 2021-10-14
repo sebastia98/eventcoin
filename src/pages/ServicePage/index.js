@@ -56,13 +56,10 @@ export const ServicePage = () => {
             }
             history.push(ACCOUNT_URL)
         })
-        .catch(error => {
-            console.log(error)
-            setError(error.message)})
+        .catch(error => setError(error.message))
     }
 
     const obtainRequests = (serviceId) => {
-        console.log(serviceId)
         if(serviceId) {
             fetch(`/serviceRequest/obtainServiceRequests?serviceId=${serviceId}`, {
                 method: "GET",
@@ -73,6 +70,24 @@ export const ServicePage = () => {
             .then(response => response.json())
             .then(response => setRequests(response.requests))
             .catch(error => console.log(error))
+        }
+    }
+
+    const hiddenEventForm = () => {
+        const eventForm = document.getElementById("event-form")
+        console.log(eventForm.style.display)
+        if (eventForm.style.display === "block") {
+            eventForm.style.display = ""
+            console.log(eventForm.style.display)
+        }
+    }
+
+    const displayEventForm = () => {
+        const eventForm = document.getElementById("event-form")
+        console.log(eventForm.style.display)
+        if (eventForm.style.display === "") {
+            eventForm.style.display = "block"
+            console.log(eventForm.style.display)
         }
     }
     
@@ -118,6 +133,28 @@ export const ServicePage = () => {
                         }/>
                     </div>
                     {error && <label id = "error-message">{error}</label>}
+                    <ul className = "checkbox-block">
+                        <li>
+                            <label for = "checkbox-one">
+                                <input type = "radio" name = "post-event" id = "checkbox-one" checked onClick = {() => hiddenEventForm()}/>Private event
+                            </label>
+                        </li>
+                        <li>
+                            <label for = "checkbox-two">
+                                <input type = "radio" name = "post-event" id = "checkbox-two" onClick = {() => displayEventForm()}/>Post event
+                            </label>
+                        </li>
+                    </ul>
+                    <div id = "event-form">
+                        <div className = "name-local-block">
+                            <span>*Local name:</span>
+                            <input className = "input-local-name" type = "text" onChange = {(e) => {}}/>
+                        </div>
+                        <div className = "url-local-block">
+                            <span>*URL location:</span>
+                            <input className = "input-local-url" type = "text" onChange = {(e) => {}}/>
+                        </div>
+                    </div>
                     <div className = "submit-block">
                         <input type = "submit" value = "Request" onClick = {registerRequestService}></input>
                     </div>

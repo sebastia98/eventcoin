@@ -84,3 +84,20 @@
     color: #A72608;
     font-size: 25px;
 }
+
+.checkbox-block {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 25px 0;
+    font-size: 20px;
+}
+
+#event-form {
+    display: none;
+}
+
+.checkbox-block div{
+    width: 40%;
+}
