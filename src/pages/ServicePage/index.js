@@ -12,16 +12,20 @@ export const ServicePage = () => {
 
     const {serviceId} = useParams();
 
-    const [error, setError] = useState("")
-    
     const {user} = useContext(AuthContext)
-    
-    const [requestInfo, setRequestInfo] = useState({})
-    const [event, setEvent] = useState({});
 
-    const [requests, setRequests] = useState([])
-    
+    const [error, setError] = useState("")
 
+    const [isPublic, setIsPublic] = useState(false);
+    
+    const [serviceInfo, setServiceInfo] = useState({})
+
+    const [requestInfo, setRequestInfo] = useState({});
+    
+    const [eventToPost, setEventToPost] = useState({})
+
+    const [unavailableRequests, setUnavailableRequests] = useState([])
+    
     const obtainService = () => 
         new Promise((resolve, reject) => {
             fetch(`/service/obtainService?id=${serviceId}`, {
@@ -37,29 +41,64 @@ export const ServicePage = () => {
         })
     
 
-    const registerRequestService = (e) => {
+    const registerRequestAndEvent = (e) => {
 
-        e.preventDefault();
-        
-        fetch("/serviceRequest/registerRequestService", {
+        e.preventDefault() 
+
+        const promises = [createRequest]
+
+        if(isPublic) {
+            const newEvent = {...eventToPost, startService : requestInfo.startRequestService, dateService : requestInfo.dateRequestService}
+
+            promises.push(createEvent(newEvent))
+        }
+
+        Promise.all(promises)
+            .then(() => history.push(ACCOUNT_URL))
+            .catch(error => setError(error.message))
+    }
+
+    const createRequest = () => 
+        new Promise((resolve, reject) => {
+            fetch("/serviceRequest/registerRequestService", {
             method: "POST",
             headers: {
                 "Access-Control-Allow-Origin" : "*",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(event)
+            body: JSON.stringify(requestInfo)
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if(!response.requestCreated) {
+                        throw new Error(response.message)
+                    }
+                    resolve(response)
+                })
+                .catch(error => reject(error))
         })
-        .then(response => response.json())
-        .then(response => {
-            if(!response.requestCreated) {
-                throw new Error(response.message)
-            }
-            history.push(ACCOUNT_URL)
-        })
-        .catch(error => setError(error.message))
-    }
 
-    const obtainRequests = (serviceId) => {
+    const createEvent = (newEvent) => 
+        new Promise((resolve, reject) => {
+            fetch("/serviceRequest/registerRequestService", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin" : "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newEvent)
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if(!response.requestCreated) {
+                        throw new Error(response.message)
+                    }
+                    resolve(response)
+                })
+                .catch(error => reject(error))
+        })
+
+    const obtainUnnavailableRequests = (serviceId) => {
         if(serviceId) {
             fetch(`/serviceRequest/obtainServiceRequests?serviceId=${serviceId}`, {
                 method: "GET",
@@ -68,95 +107,78 @@ export const ServicePage = () => {
                     "Content-Type": "application/json"}
             })
             .then(response => response.json())
-            .then(response => setRequests(response.requests))
+            .then(response => setUnavailableRequests(response.requests))
             .catch(error => console.log(error))
-        }
-    }
-
-    const hiddenEventForm = () => {
-        const eventForm = document.getElementById("event-form")
-        console.log(eventForm.style.display)
-        if (eventForm.style.display === "block") {
-            eventForm.style.display = ""
-            console.log(eventForm.style.display)
-        }
-    }
-
-    const displayEventForm = () => {
-        const eventForm = document.getElementById("event-form")
-        console.log(eventForm.style.display)
-        if (eventForm.style.display === "") {
-            eventForm.style.display = "block"
-            console.log(eventForm.style.display)
         }
     }
     
     useEffect(() => {
         obtainService()
             .then((service) => {
-                setEvent({...event, 
+                setRequestInfo({...requestInfo, 
                     serviceOwnerId : service?.userId?._id, 
                     serviceId : service?._id, 
                     serviceApplicantId : user?._id, 
                 })
-                obtainRequests(service?._id)
-                setRequestInfo(service)})
+                obtainUnnavailableRequests(service?._id)
+                setServiceInfo(service)})
             .catch(error => console.log(error))
     }, [])
 
     const requestForm = 
         <div className = "request-form-container">
-            <form className = "form-service-request">
+            <form className = "form-service-request" onSubmit = {registerRequestAndEvent}>
                 <div className = "inputs-container">
                     <div className = "date-block">
                         <span>*Choose date:</span>
                         <input className = "input-date" type = "date" required onChange = {
-                            (e) => {setEvent({...event, dateRequestService: e.target.value})
+                            (e) => {setRequestInfo({...requestInfo, dateRequestService: e.target.value})
                         }}/>
                     </div>
                     <div className = "start-time-block">
                         <span>*Choose start time:</span>
                         <input className = "input-start-time"type = "time" required onChange = {
-                            (e) => {setEvent({...event, startRequestService: e.target.value})}
+                            (e) => {setRequestInfo({...requestInfo, startRequestService: e.target.value})}
                         }/>
                     </div>
                     <div className = "time-block">
                         <span>*Choose work hours:</span>
                         <input className = "input-end-time" type = "time" required onChange = {
-                            (e) => {setEvent({...event, endRequestService: e.target.value})}
+                            (e) => {setRequestInfo({...requestInfo, endRequestService: e.target.value})}
                         }/>
                     </div>
                     <div className = "textarea-block">
                         <span>You can suggest a new rate:</span>
-                        <input className = "input-segested-price" type = "number" placeholder = "Optional" required onChange = {
-                            (e) => {setEvent({...event, suggestedPrice: e.target.value})}
+                        <input className = "input-segested-price" type = "number" placeholder = "Optional" onChange = {
+                            (e) => {setRequestInfo({...requestInfo, suggestedPrice: e.target.value})}
                         }/>
                     </div>
                     {error && <label id = "error-message">{error}</label>}
                     <ul className = "checkbox-block">
                         <li>
                             <label for = "checkbox-one">
-                                <input type = "radio" name = "post-event" id = "checkbox-one" checked onClick = {() => hiddenEventForm()}/>Private event
+                                <input classname = "checkbox" type = "radio" name = "post-event" id = "checkbox-hidden" checked = {!isPublic} onClick = {() => setIsPublic(false)}/>Private event
                             </label>
                         </li>
                         <li>
                             <label for = "checkbox-two">
-                                <input type = "radio" name = "post-event" id = "checkbox-two" onClick = {() => displayEventForm()}/>Post event
+                                <input classname = "checkbox" type = "radio" name = "post-event" id = "checkbox-post" checked = {isPublic} onClick = {() => setIsPublic(true)}/>Post event
                             </label>
                         </li>
                     </ul>
-                    <div id = "event-form">
-                        <div className = "name-local-block">
-                            <span>*Local name:</span>
-                            <input className = "input-local-name" type = "text" onChange = {(e) => {}}/>
-                        </div>
-                        <div className = "url-local-block">
-                            <span>*URL location:</span>
-                            <input className = "input-local-url" type = "text" onChange = {(e) => {}}/>
-                        </div>
-                    </div>
+                    {isPublic && 
+                        <>
+                            <div className = "name-local-block">
+                                <span>*Local name:</span>
+                                <input className = "input-local-name" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, localName : e.target.value})}}/>
+                            </div>
+                            <div className = "url-local-block">
+                                <span>*URL location:</span>
+                                <input className = "input-local-url" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, urlLocation : e.target.value})}}/>
+                            </div>
+                        </>}
                     <div className = "submit-block">
-                        <input type = "submit" value = "Request" onClick = {registerRequestService}></input>
+                        <input type = "submit" value = "Request"></input>
                     </div>
                 </div>
             </form>
@@ -172,20 +194,20 @@ export const ServicePage = () => {
             <div className = "service-info-container">
                 <div className = "service-info">
                     <div className = "service-details">
-                        <p className = "services">{requestInfo?.offeredServices}</p>
+                        <p className = "services">{serviceInfo?.offeredServices}</p>
                         <hr></hr>
-                        <p>{requestInfo.description}</p>
-                        <p>{requestInfo?.references}</p>
-                        <p className = "rate">{requestInfo?.rate} € for hour</p>
+                        <p>{serviceInfo.description}</p>
+                        <p>{serviceInfo?.references}</p>
+                        <p className = "rate">{serviceInfo?.rate} € for hour</p>
                         <hr></hr>
                     </div>   
                     <div className = "user-details">
-                        <p className = "fullname">{requestInfo.userId?.fullName}</p>
-                        <p>{requestInfo.userId?.email}</p>
-                        <p>{requestInfo.userId?.phoneNumber}</p>                        
+                        <p className = "fullname">{serviceInfo.userId?.fullName}</p>
+                        <p>{serviceInfo.userId?.email}</p>
+                        <p>{serviceInfo.userId?.phoneNumber}</p>                        
                     </div>
                 </div>
-                {requests && <TableUnavailableRequests requests = {requests}></TableUnavailableRequests>}
+                {unavailableRequests && <TableUnavailableRequests requests = {unavailableRequests}></TableUnavailableRequests>}
             </div>
            {Object.keys(user).length ? requestForm : notLogged }
         </div>
