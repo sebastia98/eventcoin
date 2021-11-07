@@ -1,0 +1,63 @@
+.event-wrapper {
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0 0 12px 4px;
+    transition: 0.3s;
+    margin: 20px 0;
+}
+
+.event-wrapper > div {
+    margin: 0 20px;   
+}
+
+.event-image-container {
+    background-color: beige;
+}
+
+.event-info-container * {
+    margin: 10px 0;
+}
+
+.event-title {
+    font-size: 3rem;
+    font-family: var(--font-family-title);
+    font-weight: 700;
+}
+
+.event-time, .event-position  {
+    display: flex;
+    flex-direction: row; 
+}
+
+.event-hour, .event-date, .event-direction, .event-location {
+    font-size: 20px;
+}
+
+.event-hour, .event-location {
+    margin-right: 20px;
+}
+
+
+.event-price-container {
+    
+}
+
+.event-price-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-price {
+    font-size: 45px;
+}
+
+.event-wrapper:hover {
+    transition: 0.5s;
+    cursor: pointer;
+    background-color: 1px solid black;
+    box-shadow: none;
+}
