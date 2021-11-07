@@ -39,25 +39,48 @@ export const ServicePage = () => {
             .then(response => resolve(response.service))
             .catch(error => console.log(error))
         })
-    
 
     const registerRequestAndEvent = (e) => {
 
         e.preventDefault() 
 
-        const promises = [createRequest]
-
-        if(isPublic) {
-            const newEvent = {...eventToPost, startService : requestInfo.startRequestService, dateService : requestInfo.dateRequestService}
-
-            promises.push(createEvent(newEvent))
-        }
-
-        Promise.all(promises)
-            .then(() => history.push(ACCOUNT_URL))
-            .catch(error => setError(error.message))
+        createRequest()
+            .then((request) => {
+                console.log(request)
+                if(isPublic) {
+                    const newEvent = {...eventToPost, startEvent : request.startRequestService, dateEvent : request.dateRequestService}
+                    createEvent(newEvent)
+                        .then(event => {
+                            history.push(ACCOUNT_URL)           
+                            console.log(event)})
+                        .catch(error => console.log(error))
+                } else {
+                    history.push(ACCOUNT_URL)
+                }
+            })
+            .catch(() => {})
     }
 
+    const createEvent = (newEvent) => 
+        new Promise((resolve, reject) => {
+            fetch("/event/registerEvent", {
+                method: "POST",
+                headers: {
+                    "Access-Control-Allow-Origin" : "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newEvent)
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if(!response.eventCreated) {
+                        throw new Error(response.message)
+                    }
+                    resolve(response.eventCreated)
+                })
+                .catch(error => reject(error))
+            })
+    
     const createRequest = () => 
         new Promise((resolve, reject) => {
             fetch("/serviceRequest/registerRequestService", {
@@ -73,30 +96,13 @@ export const ServicePage = () => {
                     if(!response.requestCreated) {
                         throw new Error(response.message)
                     }
-                    resolve(response)
+                    resolve(response.requestCreated)
                 })
                 .catch(error => reject(error))
         })
+    
 
-    const createEvent = (newEvent) => 
-        new Promise((resolve, reject) => {
-            fetch("/serviceRequest/registerRequestService", {
-                method: "POST",
-                headers: {
-                    "Access-Control-Allow-Origin" : "*",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newEvent)
-            })
-                .then(response => response.json())
-                .then(response => {
-                    if(!response.requestCreated) {
-                        throw new Error(response.message)
-                    }
-                    resolve(response)
-                })
-                .catch(error => reject(error))
-        })
+
 
     const obtainUnnavailableRequests = (serviceId) => {
         if(serviceId) {
@@ -115,15 +121,19 @@ export const ServicePage = () => {
     useEffect(() => {
         obtainService()
             .then((service) => {
-                setRequestInfo({...requestInfo, 
+                console.log("second")
+                setRequestInfo((lastState) => ({...lastState, 
                     serviceOwnerId : service?.userId?._id, 
-                    serviceId : service?._id, 
-                    serviceApplicantId : user?._id, 
-                })
+                    serviceId : service?._id 
+                }))
                 obtainUnnavailableRequests(service?._id)
                 setServiceInfo(service)})
             .catch(error => console.log(error))
     }, [])
+
+    useEffect(() => {
+        setRequestInfo({...requestInfo, serviceApplicantId : user?._id})
+    }, [user])
 
     const requestForm = 
         <div className = "request-form-container">
@@ -142,7 +152,7 @@ export const ServicePage = () => {
                         }/>
                     </div>
                     <div className = "time-block">
-                        <span>*Choose work hours:</span>
+                        <span>*Choose final time:</span>
                         <input className = "input-end-time" type = "time" required onChange = {
                             (e) => {setRequestInfo({...requestInfo, endRequestService: e.target.value})}
                         }/>
@@ -156,25 +166,33 @@ export const ServicePage = () => {
                     {error && <label id = "error-message">{error}</label>}
                     <ul className = "checkbox-block">
                         <li>
-                            <label for = "checkbox-one">
-                                <input classname = "checkbox" type = "radio" name = "post-event" id = "checkbox-hidden" checked = {!isPublic} onClick = {() => setIsPublic(false)}/>Private event
+                            <label htmlFor = "checkbox-one">
+                                <input className = "checkbox" type = "radio" name = "post-event" id = "checkbox-hidden" checked = {!isPublic} onChange = {() => setIsPublic(false)}/>Private event
                             </label>
                         </li>
                         <li>
-                            <label for = "checkbox-two">
-                                <input classname = "checkbox" type = "radio" name = "post-event" id = "checkbox-post" checked = {isPublic} onClick = {() => setIsPublic(true)}/>Post event
+                            <label htmlFor = "checkbox-two">
+                                <input className = "checkbox" type = "radio" name = "post-event" id = "checkbox-post" checked = {isPublic} onChange = {() => setIsPublic(true)}/>Post event
                             </label>
                         </li>
                     </ul>
                     {isPublic && 
                         <>
+                            <div className = "name-event-block">
+                                <span>*Event name:</span>
+                                <input className = "input-local-url" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, event : e.target.value})}}/>
+                            </div>
+                            <div className = "price-event-block">
+                                <span>*Price event:</span>
+                                <input className = "input-local-url" type = "Number" onChange = {(e) => {setEventToPost({...eventToPost, priceEvent : e.target.value})}}/>
+                            </div>
                             <div className = "name-local-block">
                                 <span>*Local name:</span>
-                                <input className = "input-local-name" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, localName : e.target.value})}}/>
+                                <input className = "input-local-name" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, localNameEvent : e.target.value})}}/>
                             </div>
                             <div className = "url-local-block">
-                                <span>*URL location:</span>
-                                <input className = "input-local-url" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, urlLocation : e.target.value})}}/>
+                                <span>*Local direccion:</span>
+                                <input className = "input-local-url" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, directionLocalEvent : e.target.value})}}/>
                             </div>
                         </>}
                     <div className = "submit-block">
@@ -190,7 +208,7 @@ export const ServicePage = () => {
         </div>
     
     return (
-        <div className = "service-page">
+        <div className = "service-page page">
             <div className = "service-info-container">
                 <div className = "service-info">
                     <div className = "service-details">

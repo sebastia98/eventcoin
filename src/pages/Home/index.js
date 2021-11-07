@@ -38,11 +38,11 @@ export const Home = () => {
     }, [filter]);
 
     return (
-        <div className="home-page">
+        <div className="home-page page">
             <div className = "services-container">
-                <p className = "available-services">Available services</p>
+                <p className = "available-services title">Available services</p>
                 <div className = "input-container">
-                    <input className = "input-filter" type = "text" placeholder = "Filter services" onChange = {(e) => {setFilter(e.target.value)}}></input><i class="fas fa-search"></i>
+                    <input className = "input-filter" type = "text" placeholder = "Filter services" onChange = {(e) => {setFilter(e.target.value)}}></input><i className = "fas fa-search"></i>
                 </div>
                 {data.length === 0 ? <p>There aren't available services</p> : <TableServices data = {data}></TableServices>}
             </div>

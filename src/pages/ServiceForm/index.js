@@ -69,7 +69,7 @@ export const ServiceForm = () => {
     }, []);
 
     return (
-        <div className="service-form-page">
+        <div className="service-form-page page">
             <div className="service-form-container">
                 <p className="title-service-form">Register your service</p>
                 {error && <label>Have occurred an error. Try again!</label>}

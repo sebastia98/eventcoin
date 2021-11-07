@@ -2,22 +2,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    color: var(--color-primary);
 }
 
 .title-signup {
     font-size: 40px;
     text-align: center;
+    font-family: var(--font-family-title);
+    padding: 0.8em 0;
 }
 
 .form-signup-container {
     width: 400px;
+    padding-bottom: 1.2rem;
 }
 
 .form-signup div {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding-bottom: 0.6rem;
+    row-gap: 0.6rem;
 }
 
 .form-signup div span {
@@ -26,7 +30,13 @@
 
 .form-signup div input{
     padding: 10px;
+    border: 1px solid var(--color-grey);
     border-radius: 10px;
+}
+
+.form-signup div input:focus {
+    border-color: var(--color-primary);
+    outline: none;    
 }
 
 .form-signup .button-signup {
@@ -35,15 +45,18 @@
 }
 
 .form-signup .button-signup input{
-    padding: 10px;
+    padding: 0.4em;
+    margin-top: 1.2rem;
     border-radius: 10px;
+    border-color: transparent;
     font-size: 20px;
-    background-color: #BBC5AA;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transition: 0.2s;
+    cursor: pointer;
 }
 
 .form-signup .button-signup input:hover {
-    background-color: #A72608;
+    background-color: var(--color-accent-dark);
     transition: 0.2s;
-    color: #E6EED6;
-    cursor: pointer;
 }

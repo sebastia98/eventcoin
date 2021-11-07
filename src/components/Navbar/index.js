@@ -2,14 +2,14 @@ import React, {useState, useEffect, useContext} from 'react';
 import { Link } from 'react-router-dom'
 import './index.css';
 
-import { ACCOUNT_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL } from '../../utils/urls';
+import { ACCOUNT_URL, EVENT_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL } from '../../utils/urls';
 import AuthContext from '../../contexts/authContext';
 
 export const Navbar = () => {
 
     const [credits, setCredits] = useState();
 
-    const {user} = useContext(AuthContext)
+    const {user, setUser} = useContext(AuthContext)
 
     const readUserCredits = () => {
       fetch(`/user/getCredits?userId=${user?._id}`, {
@@ -20,14 +20,13 @@ export const Navbar = () => {
       })
       .then(response => response.json())
       .then(responseData => {
-          console.log(responseData)
         setCredits(responseData.credits)
       })
       .catch(error => console.log(error))
   };
 
   useEffect(() => {
-      if(Object.keys(user).length) {
+      if(user && Object.keys(user).length) {
         readUserCredits();
       }
   }, [user])
@@ -40,6 +39,7 @@ export const Navbar = () => {
                 <p className = "credits">
                     {credits} tokens
                 </p>
+                <button type = "button" onClick = {() => {setUser(undefined)}}>Log out</button>
             </div>;
     
     const navbarUserOptions = 
@@ -63,9 +63,12 @@ export const Navbar = () => {
                     <Link to={HOME_URL} className="navbar-home">
                         ServiceCoin <i className="fab fa-typo3"/>
                     </Link>
+                    <Link to={EVENT_URL} className = "navbar-event">
+                        Events
+                    </Link>
                 </div>
                 <div className = "navbar-item">
-                    {Object.keys(user).length ? navbarAccount : navbarUserOptions}
+                    {user && Object.keys(user).length ? navbarAccount : navbarUserOptions}
                 </div>
             </nav>
         </div>

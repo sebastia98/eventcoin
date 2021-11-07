@@ -1,0 +1,9 @@
+.event-page {
+    display: flex;
+    justify-content: center;
+}
+
+.events-container {
+    width: 70%;
+    margin: 90px 0;
+}

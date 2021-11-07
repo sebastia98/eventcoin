@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
     }, [])
     
     useEffect(() => {
-        if (Object.keys(user).length) {
+        if (user && Object.keys(user).length) {
             localStorage.setItem(USER_KEY, JSON.stringify(user))
         } else {
             localStorage.removeItem(USER_KEY);
@@ -28,9 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     }, [user])
 
   return (
-    <AuthContext.Provider
-      value={{ user, setUser }}
-      >
+    <AuthContext.Provider value={{ user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

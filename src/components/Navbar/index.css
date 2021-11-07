@@ -1,31 +1,33 @@
 .navbar-container {
-  background-color: #BBC5AA;
-  height: 150px;
+  height: 110px;
+  background-color: var(--color-primary-dark);
+  color: var(--color-grey-light);
 }
 
 .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 150px;
+  height: 100%;
   align-items: center;
 }
 
-.navbar-home {
+.navbar-item a{
   text-decoration: none;
+  color: inherit;
+}
+
+.navbar-home {
   font-size: 2.7vw;
-  color: #090c02;
 }
 
 .navbar-home:hover {
-  color: #A72608;
   transition: 0.15s;
 }
 
 .navbar-user {
   text-decoration: none;
   font-size: 2.3vw;
-  color: #090c02;
 }
 
 .credits {
@@ -34,7 +36,6 @@
 }
 
 .navbar-user:hover {
-  color: #A72608;
   transition: 0.15s;
 }
 
@@ -43,19 +44,18 @@
 }
 
 .option-buttom {
-  font-size: 1vw;
-  background-color: #e6eed6;
-  border-color: #090c02;
-  color: #090c02;
-  padding: 0.5vw 3vw;
+  font-size: 1.6rem;
+  padding: 0.3em 2em;
   border-radius: 10px;
+  border-color: transparent;
+  background-color: var(--color-grey-light);
+  color: var(--color-primary);
 }
 
 .option-buttom:hover {
-  background-color: #A72608;
-  color: #e6eed6;
-  border-color: #A72608;
   transition: 0.15s;
+  color: var(--color-grey-light);
+  background-color: var(--color-primary);
   cursor: pointer;
 }
 

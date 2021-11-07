@@ -141,15 +141,15 @@ export const Account = () => {
         sendRequests.style.display = "block"
     }
 
-    const servicesTable = services.length === 0 ? 
+    const servicesTable = services?.length === 0 ? 
                                 <p>You don't have pushed services</p> : 
                                 <TableServices userService = {true} deleteService = {deleteService} data = {services}></TableServices>
 
-    const ownerRequestsTable = userOwnerRequests.length === 0 ? 
+    const ownerRequestsTable = userOwnerRequests?.length === 0 ? 
                                 <p>You don't have any request</p> : 
                                 <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest} participation = {"owner"} rejectRequest = {rejectRequest}></TableRequests>
 
-    const applicantRequestsTable = userApplicantRequests.length === 0 ? 
+    const applicantRequestsTable = userApplicantRequests?.length === 0 ? 
                                 <p>You haven't requested any service</p> 
                                 : <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"} deleteRequest = {deleteRequest}></TableRequests>
 
@@ -166,7 +166,7 @@ export const Account = () => {
     }, [serviceDeleted]);
 
     return (
-        <div className = "account-page">
+        <div className = "account-page page">
             <div className = "account-wrapper">
                 <div className = "add-service">
                     <Link to = {FORM_SERVICE_URL}><button className = "add-service-button">Add new service</button></Link>

@@ -1,5 +1,6 @@
 .home-page {
-    min-height: 61vh;
+    display: grid;
+    place-items: center;
 }
 
 .input-container {
@@ -7,6 +8,10 @@
     justify-content: center;
     align-items: center;
     padding: 40px 0 0 0;
+}
+
+.title {
+    color: var(--color-primary-dark)
 }
 
 .input-filter {

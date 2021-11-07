@@ -9,11 +9,13 @@ export const TableServices = (props) => {
         <div className = "table-container">
             <table className = "services-table">
                 <thead className = "services-table-header">
-                    <th>Owner</th>
-                    <th>Service</th>
-                    <th>Rate</th>
-                    <th>References</th>
-                    <th></th>
+                    <tr>
+                        <th>Owner</th>
+                        <th>Service</th>
+                        <th>Rate</th>
+                        <th>References</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody className = "table-body">
                     {props.data.map((service, index) => <Service key = {index} service = {service} userService = {props.userService} deleteService = {props.deleteService}></Service>)}

@@ -1,9 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;700&family=Poppins:wght@100;300;700&display=swap%27');
+
 *, *::after, *::before{
     margin: 0;
     padding: 0;
 }
 
+html {
+    font-size: 62.5%;
+}
+
 .page{
-    background-color: #DDE2C6;
+    background-color: var(--color-grey-light);
+    min-height: calc(100vh - var(--navbar-size) - var(--footer-size));
+}
+
+h1,h2,h3,th, .title {
+    font-family: var(--font-family-title);
+    font-weight: 700;
+  }
+  
+  p,label,small,span,a,input,textarea, td {
+    font-family: var(--font-family-text);
+  }
+
+@media only screen and (max-width: 37.5em) {
+    html {
+        font-size: 43.75%;
+    }
+}
+
+@media only screen and (max-width: 56.25em) {
+    html {
+        font-size: 56.25%;
+    }
+}
+
+@media only screen and (min-width: 112.5em) {
+    html {
+        font-size: 75%;
+    }
+}
+
+:root {
+    --navbar-size: 110px;
+    --footer-size: 128px;
+
+    --color-black: #000;
+    --color-white: #fff;
+
+    --color-primary: #2e8fea;
+    --color-primary-light: hsl(209, 82%, 75%);
+    --color-primary-dark: hsl(209, 82%, 35%);
+
+    --color-accent: hsl(37, 82%, 55%);
+    --color-accent-light: hsl(37, 82%, 75%);
+    --color-accent-dark: hsl(37, 82%, 40%);
+
+
+    --color-grey: hsl(197, 3%, 60%);
+    --color-grey-light: hsl(197, 3%, 95%);
+    --color-grey-dark: hsl(197, 3%, 30%);
+
+
+    --font-family-title: 'Roboto Slab', serif;
+    --font-family-text:  'Poppins', sans-serif;
 }
 

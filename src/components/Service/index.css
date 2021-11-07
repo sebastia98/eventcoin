@@ -1,28 +1,29 @@
 .service-container{
-    background-color: #BBC5AA;
+    background-color: var(--color-white);
 }
 
 .service-container td{
     text-align: center;
-    color: #090C02;
+    color: var(--color-primary);
     font-size: 1.5vw;
     padding: 5px 0;
 }
 
 .button-more {
     padding: 4px 0;
-    width: 80%;
+    width: 40%;
     border-radius: 10px;
-    font-size: 1vw;
-    background-color: #DDE2C6;
-    color: #090c02;
+    border: none;
+    font-size: 1.2rem;
+    font-family: var(--font-family-text);
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transition: 0.2s;
 }
 
 .button-more:hover {
-    background-color: #A72608;
+    background-color: var(--color-accent-dark);
     cursor: pointer;
-    color: #DDE2C6;
-    transition: 0.2s;
 }
 
 .edit, .delete {

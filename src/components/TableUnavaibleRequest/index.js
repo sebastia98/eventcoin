@@ -16,7 +16,7 @@ export const TableUnavailableRequests = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.requests.map(request => <UnavailableRequestRow request = {request}></UnavailableRequestRow>)}
+                    {props.requests.map((request, index) => <UnavailableRequestRow request = {request} key = {index}></UnavailableRequestRow>)}
                 </tbody>
             </table>
         </div>

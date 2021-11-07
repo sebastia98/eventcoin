@@ -48,7 +48,7 @@ function LogIn() {
     const [invalidCredentials, setInvalidCredentials] = useState(false);
 
     return (
-        <div className="login-page">
+        <div className="login-page page">
             <div className = "form-login-container">
                 <p className = "title-login">Type your credentials</p>
                 <form className = "form-login">

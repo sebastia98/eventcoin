@@ -59,7 +59,7 @@ export const SignUp = () => {
     useEffect(() => {setError({...error, hasError : false, confirmPassword : false})}, [event.password, event.confirmPassword])
 
     return (
-        <div className = "signup-page">
+        <div className = "signup-page page">
             <div className="form-signup-container">
                 <p className="title-signup">Registration</p>
                 {invalidParams && (<span>{invalidParams}</span>)}
