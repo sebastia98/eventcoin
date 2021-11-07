@@ -8,7 +8,8 @@ import {Account} from './pages/Account';
 import {SignUp} from './pages/SignUp';
 import LongIn from './pages/LogIn';
 import {ServiceForm} from './pages/ServiceForm';
-import { ACCOUNT_URL, SERVICE_URL, FORM_SERVICE_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL } from "./utils/urls";
+import {EventPage} from './pages/EventPage';
+import { ACCOUNT_URL, SERVICE_URL, FORM_SERVICE_URL, HOME_URL, LOG_IN_URL, SIGN_UP_URL, EVENT_URL } from "./utils/urls";
 import './styles/index.css';
 import {ServicePage} from "./pages/ServicePage";
 import { AuthContextProvider } from "./contexts/authContext";
@@ -16,7 +17,6 @@ import { AuthContextProvider } from "./contexts/authContext";
 function App() {
 
   return (
-    <div className="page">
       <AuthContextProvider>
       <Router>
           <Navbar/>
@@ -27,13 +27,13 @@ function App() {
             <Route path={LOG_IN_URL} exact component={LongIn}/>
             <Route path={`${SERVICE_URL}/:serviceId`} exact component={ServicePage}/>
             <Route path={FORM_SERVICE_URL} exact component={ServiceForm}/>
+            <Route path={EVENT_URL} exact component={EventPage}/>
           </Switch>
       </Router>
       <div className = "footer">
         <Footer/>
       </div>
       </AuthContextProvider>
-    </div>
   );
 }
 
