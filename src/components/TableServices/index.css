@@ -12,7 +12,6 @@
 .services-table-header th {
     background-color: var(--color-primary-dark);
     color: #e6eed6;
-    font-size: 2vw;
     padding: 2vw 6vw;
 }
 

@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--color-primary);
 }
 
 .title-login{
     text-align: center;
     font-size: 40px;
-    color: #090C02;
 }
 
 .form-login div {
@@ -18,12 +18,20 @@
 
 .form-login .input-block span {
     font-size: 20px;
+    
 }
 
 .form-login .input-block input{
     padding: 10px;
+    border: 1px solid var(--color-grey);
     border-radius: 10px;
 }
+
+.form-login .input-block input:focus {
+    border-color: var(--color-primary);
+    outline: none;    
+}
+
 
 .form-login .button-login {
     display: flex;
@@ -32,20 +40,22 @@
 
 .form-login .button-login input{
     padding: 10px;
+    border-color: transparent;
     border-radius: 10px;
     font-size: 20px;
-    background-color: #BBC5AA;
+    background-color: var(--color-accent);
+    transition: 0.2s;
+    color: var(--color-white);
 }
 
 .form-login .button-login input:hover {
-    background-color: #A72608;
+    background-color: var(--color-accent-dark);
     transition: 0.2s;
-    color: #E6EED6;
     cursor: pointer;
 }
 
 .invalid-credentials {
     text-align: center;
-    color: #A72608;
+    color: var(--color-accent-light);
     font-size: 20px;
 }
