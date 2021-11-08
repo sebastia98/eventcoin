@@ -17,8 +17,8 @@
   color: inherit;
 }
 
-.navbar-home {
-  font-size: 2.7vw;
+.navbar-home, .navbar-event {
+  font-size: 20px;
 }
 
 .navbar-home:hover {
@@ -26,13 +26,35 @@
 }
 
 .navbar-user {
-  text-decoration: none;
-  font-size: 2.3vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+}
+
+.navbar-user p, i, button {
+  margin-right: 7px;
+}
+
+.button-logout {
+  margin-left: 8px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-family: var(--font-family-text);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  transition: 0.2s;
+}
+
+.button-logout:hover {
+  background-color: var(--color-accent-dark);
+  cursor: pointer;
 }
 
 .credits {
-  text-align: center;
-  font-size: 2vw;
+  font-size: 15px;
 }
 
 .navbar-user:hover {
@@ -57,36 +79,4 @@
   color: var(--color-grey-light);
   background-color: var(--color-primary);
   cursor: pointer;
-}
-
-@media (max-width: 950px) {
-  .navbar-home {
-    font-size: 24px;
-  }
-
-  .option-buttom {
-    font-size: 10px;
-  }
-}
-
-@media (max-width: 600px) {
-  .navbar-user {
-    font-size: 13.8px;
-  }
-
-  .credits {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 1000px) {
-  .navbar-home {
-    font-size: 27px;
-  }
-  .navbar-user {
-    font-size: 23px;
-  }
-  .credits {
-    font-size: 20px;
-  }
 }

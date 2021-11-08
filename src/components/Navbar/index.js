@@ -34,12 +34,13 @@ export const Navbar = () => {
     const navbarAccount = 
             <div className = "navbar-account">
                 <Link to = {ACCOUNT_URL} className = "navbar-user" >
-                    {user?.fullName}<i className="far fa-user"></i>
+                    <p>{user?.fullName}</p>
+                    <i className="far fa-user"></i>
+                    <button className = "button-logout" type = "button" onClick = {() => {setUser(undefined)}}>Log out</button>
                 </Link>
                 <p className = "credits">
                     {credits} tokens
                 </p>
-                <button type = "button" onClick = {() => {setUser(undefined)}}>Log out</button>
             </div>;
     
     const navbarUserOptions = 
@@ -61,10 +62,12 @@ export const Navbar = () => {
             <nav className="navbar">
                 <div className = "navbar-item">
                     <Link to={HOME_URL} className="navbar-home">
-                        ServiceCoin <i className="fab fa-typo3"/>
+                        <p>ServiceCoin <i className="fab fa-typo3"/></p>
                     </Link>
+                </div>
+                <div className="navbar-item">
                     <Link to={EVENT_URL} className = "navbar-event">
-                        Events
+                        <p>Events</p>
                     </Link>
                 </div>
                 <div className = "navbar-item">
