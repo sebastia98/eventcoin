@@ -1,5 +1,6 @@
 .footer-container {
-    background: #090C02;
+    background-color: var(--color-primary-darker);
+    color: var(--color-grey-light);
     display: flex;
     justify-content: center;
 }
@@ -7,7 +8,6 @@
 .footer-container .footer {
     padding: 30px;
     text-align: center;
-    color: white;
     font-size: 18px;
 }
 

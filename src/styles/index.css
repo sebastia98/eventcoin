@@ -48,9 +48,10 @@ h1,h2,h3,th, .title {
     --color-black: #000;
     --color-white: #fff;
 
-    --color-primary: #2e8fea;
+    --color-primary: hsl(209, 82%, 55%);
     --color-primary-light: hsl(209, 82%, 75%);
     --color-primary-dark: hsl(209, 82%, 35%);
+    --color-primary-darker: hsl(209, 82%, 12%);
 
     --color-accent: hsl(37, 82%, 55%);
     --color-accent-light: hsl(37, 82%, 75%);

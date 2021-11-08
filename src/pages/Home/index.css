@@ -10,16 +10,26 @@
     padding: 40px 0 0 0;
 }
 
+.input-container > i {
+    font-size: 1.3rem;
+    color: var(--color-primary-dark)
+}
+
 .title {
     color: var(--color-primary-dark)
 }
 
 .input-filter {
     width: 20%;
-    padding: 5px;
-    border: 1px solid;
+    padding: 5px 0 5px 12px;
+    border: 1px solid var(--color-grey);
     border-radius: 15px;
     margin-right: 5px;
+}
+
+.input-filter:focus {
+    border-color: var(--color-primary);
+    outline: none;    
 }
 
 .services-container {
