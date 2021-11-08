@@ -141,18 +141,25 @@ export const Account = () => {
         sendRequests.style.display = "block"
     }
 
-    const servicesTable = services?.length === 0 ? 
-                                <p>You don't have pushed services</p> : 
-                                <TableServices userService = {true} deleteService = {deleteService} data = {services}></TableServices>
+    const servicesTable = services?.length > 0 ? 
+                                <TableServices userService = {true} deleteService = {deleteService} data = {services}></TableServices> :
+                                <p>You don't have pushed services</p>
+                                
 
-    const ownerRequestsTable = userOwnerRequests?.length === 0 ? 
-                                <p>You don't have any request</p> : 
-                                <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest} participation = {"owner"} rejectRequest = {rejectRequest}></TableRequests>
+    const ownerRequestsTable = userOwnerRequests?.length > 0 ?
+    <TableRequests requests = {userOwnerRequests} confirmRequest = {confirmOwnerRequest} participation = {"owner"} rejectRequest = {rejectRequest}></TableRequests> :
+                                <p>You don't have any request</p>
+                                
 
-    const applicantRequestsTable = userApplicantRequests?.length === 0 ? 
+    const applicantRequestsTable = userApplicantRequests?.length > 0 ? 
+    <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"} deleteRequest = {deleteRequest}></TableRequests> :
                                 <p>You haven't requested any service</p> 
-                                : <TableRequests requests = {userApplicantRequests} confirmRequest = {confirmApplicantRequest} participation = {"applicant"} deleteRequest = {deleteRequest}></TableRequests>
 
+    useEffect(() => {
+        readUserOwnerRequests()
+        readUserApplicantRequests()
+        readUserServices()
+    }, [user])
 
 
     useEffect(() => {

@@ -78,7 +78,7 @@ export const ServicePage = () => {
                     }
                     resolve(response.eventCreated)
                 })
-                .catch(error => reject(error))
+                .catch(error => setError(error.message))
             })
     
     const createRequest = () => 
@@ -98,7 +98,7 @@ export const ServicePage = () => {
                     }
                     resolve(response.requestCreated)
                 })
-                .catch(error => reject(error))
+                .catch(error => setError(error.message))
         })
     
 
@@ -163,7 +163,6 @@ export const ServicePage = () => {
                             (e) => {setRequestInfo({...requestInfo, suggestedPrice: e.target.value})}
                         }/>
                     </div>
-                    {error && <label id = "error-message">{error}</label>}
                     <ul className = "checkbox-block">
                         <li>
                             <label htmlFor = "checkbox-one">
@@ -195,6 +194,7 @@ export const ServicePage = () => {
                                 <input className = "input-local-url" type = "text" onChange = {(e) => {setEventToPost({...eventToPost, directionLocalEvent : e.target.value})}}/>
                             </div>
                         </>}
+                        {error && <label id = "error-message">{error}</label>}
                     <div className = "submit-block">
                         <input type = "submit" value = "Request"></input>
                     </div>
@@ -214,21 +214,21 @@ export const ServicePage = () => {
                 <div className = "service-info">
                     <div className = "service-details">
                         <div className = "service-presentation">
-                            <p className = "services">{serviceInfo?.offeredServices}</p>
+                            <p className = "services title">{serviceInfo?.offeredServices}</p>
                             <p className = "rate">{serviceInfo?.rate} € for hour</p>
                         </div>
                         <hr></hr>
-                        <p className = "fullname">{serviceInfo.userId?.fullName}</p>
                         <p>{serviceInfo.description}</p>
                         <p>{serviceInfo?.references}</p>
                         <hr></hr>
                     </div>   
                     <div className = "user-details">
+                        <p className = "fullname title">{serviceInfo.userId?.fullName}</p>
                         <p>{serviceInfo.userId?.email}</p>
                         <p>{serviceInfo.userId?.phoneNumber}</p>                        
                     </div>
                 </div>
-                {unavailableRequests && <TableUnavailableRequests requests = {unavailableRequests}></TableUnavailableRequests>}
+                {!!unavailableRequests.length && <TableUnavailableRequests requests = {unavailableRequests}></TableUnavailableRequests>}
             </div>
            {Object.keys(user).length ? requestForm : notLogged }
             </div>

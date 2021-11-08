@@ -9,6 +9,7 @@
     width: 80%;
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     margin: 30px;
 }
 
@@ -24,7 +25,7 @@
     padding: 10px 0;
 }
 
-.service-info div p {
+.service-info div p:not(.rate) {
     padding: 5px 0;
     color: var(--color-primary)
 }
@@ -76,10 +77,15 @@
     outline: none; 
 }
 
+.rate {
+    color: var(--color-accent);
+}
+
+.submit-block {
+    align-items: center;
+}
 
 .inputs-container .submit-block input{
-    display: flex;
-    justify-content: center;
     width: 40%;
     padding: 5px;
     border: none;

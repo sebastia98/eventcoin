@@ -8,11 +8,13 @@ export const TableRequests = (props) => {
         <div className = "table-requests-container">
             <table className = "table-requests">
                 <thead className = "table-requests-header">
-                    <th>Service</th>
-                    <th>Date</th>
-                    <th>Schedule</th>
-                    <th>Counteroffer</th>
-                    <th className = "request-options"></th>
+                    <tr>
+                        <th>Service</th>
+                        <th>Date</th>
+                        <th>Schedule</th>
+                        <th>Counteroffer</th>
+                        <th className = "request-options"></th>
+                    </tr>
                 </thead>
                 <tbody>
                     {props.requests?.map((request, index) => <RequestRow key = {index} 
