@@ -13,16 +13,18 @@
 }
 
 .add-service-button {
-    padding: 10px 35px;
-    font-size: 20px;
+    padding: 4px 15px;
     border-radius: 10px;
-    background-color: #E6EED6;
+    border: none;
+    font-size: 1.6rem;
+    font-family: var(--font-family-text);
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transition: 0.2s;
 }
 
-.add-service-button:hover, .request-buttons button:hover {
-    background-color: #A72608;
-    transition: 0.2s;
-    color: #E6EED6;
+.add-service-button:hover {
+    background-color: var(--color-accent-dark);
     cursor: pointer;
 }
 

@@ -12,7 +12,6 @@
 .services-table-header th {
     background-color: var(--color-primary-dark);
     color: #e6eed6;
-    padding: 2vw 6vw;
 }
 
 @media (max-width: 450px) {

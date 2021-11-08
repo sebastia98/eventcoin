@@ -22,8 +22,8 @@ export const Service = (props) =>  {
                 </td>}
             {props.userService && 
                 <td className = "user-options">
-                    <button className = "edit" onClick = {() => history.push(FORM_SERVICE_URL, props.service)}>Edit</button>
-                    <button className = "delete" onClick = {() => props.deleteService(props.service)}>Delete</button>
+                    <button className = "edit" onClick = {() => history.push(FORM_SERVICE_URL, props.service)}><i className="far fa-edit"></i></button>
+                    <button className = "delete" onClick = {() => props.deleteService(props.service)}><i className="fas fa-trash-alt"></i></button>
                 </td>}
         </tr>
     )

@@ -209,18 +209,21 @@ export const ServicePage = () => {
     
     return (
         <div className = "service-page page">
+            <div className = "service-wrapper">
             <div className = "service-info-container">
                 <div className = "service-info">
                     <div className = "service-details">
-                        <p className = "services">{serviceInfo?.offeredServices}</p>
+                        <div className = "service-presentation">
+                            <p className = "services">{serviceInfo?.offeredServices}</p>
+                            <p className = "rate">{serviceInfo?.rate} € for hour</p>
+                        </div>
                         <hr></hr>
+                        <p className = "fullname">{serviceInfo.userId?.fullName}</p>
                         <p>{serviceInfo.description}</p>
                         <p>{serviceInfo?.references}</p>
-                        <p className = "rate">{serviceInfo?.rate} € for hour</p>
                         <hr></hr>
                     </div>   
                     <div className = "user-details">
-                        <p className = "fullname">{serviceInfo.userId?.fullName}</p>
                         <p>{serviceInfo.userId?.email}</p>
                         <p>{serviceInfo.userId?.phoneNumber}</p>                        
                     </div>
@@ -228,6 +231,7 @@ export const ServicePage = () => {
                 {unavailableRequests && <TableUnavailableRequests requests = {unavailableRequests}></TableUnavailableRequests>}
             </div>
            {Object.keys(user).length ? requestForm : notLogged }
+            </div>
         </div>
     )
 }

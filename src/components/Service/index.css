@@ -3,9 +3,9 @@
 }
 
 .service-container td{
+    font-size: 15px;
     text-align: center;
     color: var(--color-primary);
-    font-size: 1.5vw;
     padding: 5px 0;
 }
 
@@ -27,29 +27,21 @@
 }
 
 .edit, .delete {
-    width: 45%;
-    font-size: 1vw;
-    padding: 4px 0;
+    font-size: 1.6rem;
     border-radius: 10px;
-    background-color: #DDE2C6;
-    color: #090c02;
+    border: none;
+    background-color: transparent;
+    color: var(--color-accent);
 }
 
 .edit:hover, .delete:hover {
-    background-color: #A72608;
     cursor: pointer;
-    color: #DDE2C6;
+    color: var(--color-accent-dark);
     transition: 0.2s;
 }
 
 @media (max-width: 450px) {
     .service-container td {
         font-size: 6.75 px;
-    }
-}
-
-@media (min-width: 1000px) {
-    .service-container td {
-        font-size: 15px;
     }
 }

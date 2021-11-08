@@ -1,26 +1,25 @@
 .request-row{
-    background-color: #BBC5AA;
+    background-color: var(--color-white);
 }
 
-.request-row td{
+.request-row td {
+    font-size: 15px;
     text-align: center;
-    color: #090C02;
-    font-size: 1.2vw;
+    color: var(--color-primary);
     padding: 5px 0;
 }
 
 .button-confirm, .button-reject, .button-delete {
-    width: 45%;
-    font-size: 1vw;
-    padding: 4px 0;
+    font-size: 1.6rem;
     border-radius: 10px;
-    background-color: #DDE2C6;
-    color: #090c02;
+    border: none;
+    background-color: transparent;
+    color: var(--color-accent);
+    transition: 0.2s;
 }
 
 .button-confirm:hover, .button-reject:hover, .button-delete:hover {
-    background-color: #A72608;
     cursor: pointer;
-    color: #DDE2C6;
+    color: var(--color-accent-dark);
     transition: 0.2s;
 }

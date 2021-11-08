@@ -11,14 +11,14 @@ export const RequestRow = (props) => {
     const confirmedOrOptions = checkOwnerConfirmed || checkApplicantConfirmed ?
             <p>Confirmed</p> :
             <div>
-                <button className="button-confirm" onClick = {() => {props.confirmRequest(props.request._id)}}>Confirm</button>
-                {props?.participation === "owner" && <button className="button-reject" onClick = {() => props?.rejectRequest(props?.request._id)}>Reject</button>}
+                <button className="button-confirm" onClick = {() => {props.confirmRequest(props.request._id)}}><i className="far fa-check-circle"></i></button>
+                {props?.participation === "owner" && <button className="button-reject" onClick = {() => props?.rejectRequest(props?.request._id)}><i className="fas fa-times"></i></button>}
             </div>
     
     const rejectOptions = 
         <div>
             {props?.participation === "applicant" ? 
-                <button className = "button-delete" onClick = {() => props?.deleteRequest(props?.request._id)}>Delete</button> :
+                <button className = "button-delete" onClick = {() => props?.deleteRequest(props?.request._id)}><i className="fas fa-trash-alt"></i></button> :
                 <p>Rejected</p>}
         </div>
 
