@@ -34,7 +34,7 @@
     border-radius: 10px;
 }
 
-.form-signup div input:focus {
+.form-signup div input:focus:not(.register-button) {
     border-color: var(--color-primary);
     outline: none;    
 }
@@ -59,4 +59,10 @@
 .form-signup .button-signup input:hover {
     background-color: var(--color-accent-dark);
     transition: 0.2s;
+}
+
+.invalid-password {
+    text-align: center;
+    color: var(--color-accent-light);
+    font-size: 20px;
 }

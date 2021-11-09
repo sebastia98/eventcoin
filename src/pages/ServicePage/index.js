@@ -101,9 +101,6 @@ export const ServicePage = () => {
                 .catch(error => setError(error.message))
         })
     
-
-
-
     const obtainUnnavailableRequests = (serviceId) => {
         if(serviceId) {
             fetch(`/serviceRequest/obtainServiceRequests?serviceId=${serviceId}`, {

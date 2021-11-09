@@ -125,9 +125,15 @@
     cursor: pointer;
 }
 
+.not-logged-container {
+    width: 40%;
+    margin: 40px;
+}
+
 .not-logged-container p {
-    color: #A72608;
-    font-size: 25px;
+    text-align: center;
+    color: var(--color-accent);
+    font-size: 17px;
 }
 
 .checkbox-block {

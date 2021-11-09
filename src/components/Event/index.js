@@ -1,4 +1,5 @@
 import React from "react";
+
 import './index.css'
 
 export const Event = (props) => {
@@ -13,7 +14,7 @@ export const Event = (props) => {
                 <hr/>
                 <div className = "event-time">
                     <p className = "event-hour">{props.event?.startEvent}</p>
-                    <p className = "event-date">{props.event?.dateEvent}</p>
+                    <p className = "event-date">{props.event?.dateEvent.substring(0, 10)}</p>
                 </div>
                 <div className = "event-position">
                     <p className = "event-location">{props.event?.localNameEvent}</p>

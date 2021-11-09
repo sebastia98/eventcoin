@@ -100,9 +100,9 @@ export const SignUp = () => {
                             setEvent({...event, confirmPassword: e.target.value})
                         }}/>
                     </div>
-                    {error.confirmPassword && (<p>Passwords don't match</p>)}
+                    {error.confirmPassword && (<p className = "invalid-password">Passwords don't match</p>)}
                     <div className = "button-signup">
-                        <input disabled={loading} type="submit" value="Register" onClick={processUserData}/>
+                        <input className = "register-button" disabled={loading} type="submit" value="Register" onClick={processUserData}/>
                     </div>
                 </form>
             </div>
