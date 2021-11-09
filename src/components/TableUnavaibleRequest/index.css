@@ -13,14 +13,14 @@
 }
 
 .unavailable-requests-container p {
-    font-size: 19px;
-    color: #A72608;
+    font-size: 15px;
+    color: var(--color-grey);
     margin-bottom: 10px;
 }
 
 .unavailable-requests-header tr th {
-    background-color: #090C02;
-    color: #e6eed6;
-    font-size: 19px;
+    background-color: var(--color-primary);
+    color: var(--color-grey-light);
+    font-size: 15px;
     padding: 5px 20px;
 }

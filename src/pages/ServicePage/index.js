@@ -165,12 +165,12 @@ export const ServicePage = () => {
                     </div>
                     <ul className = "checkbox-block">
                         <li>
-                            <label htmlFor = "checkbox-one">
+                            <label htmlFor = "checkbox-hidden" className = {!isPublic ? "active" : ""}>
                                 <input className = "checkbox" type = "radio" name = "post-event" id = "checkbox-hidden" checked = {!isPublic} onChange = {() => setIsPublic(false)}/>Private event
                             </label>
                         </li>
                         <li>
-                            <label htmlFor = "checkbox-two">
+                            <label htmlFor = "checkbox-post" className = {isPublic ? "active" : ""}>
                                 <input className = "checkbox" type = "radio" name = "post-event" id = "checkbox-post" checked = {isPublic} onChange = {() => setIsPublic(true)}/>Post event
                             </label>
                         </li>

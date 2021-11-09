@@ -38,6 +38,29 @@
     margin: 10px 0;
 }
 
+.checkbox-block input {
+    display: none;
+}
+
+.checkbox-block label {
+    color: var(--color-primary);
+    position: relative;
+    cursor: pointer;
+}
+
+.checkbox-block label::after {
+    content: ' \2714';
+    position: absolute;
+    top: 0;
+    left: -19px;
+    transform: scale(0, 1);
+    transition: all 0.10s;
+}
+
+.checkbox-block .active::after {
+    transform: scale(1, 1);
+}
+
 .service-presentation {
     display: flex;
     justify-content: space-between;
