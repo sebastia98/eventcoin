@@ -46,12 +46,12 @@
     padding: 20px;
     border-radius: 10px;
     font-size: 20px;
-    background-color: #BBC5AA;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transition: 0.2s;
 }
 
 .button-add-service input:hover {
-    background-color: #A72608;
-    transition: 0.2s;
-    color: #E6EED6;
+    background-color: var(--color-accent-dark);
     cursor: pointer;
 }

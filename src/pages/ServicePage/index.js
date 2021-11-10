@@ -12,7 +12,7 @@ export const ServicePage = () => {
 
     const {serviceId} = useParams();
 
-    const {user} = useContext(AuthContext)
+    const {user, setUser} = useContext(AuthContext)
 
     const [error, setError] = useState("")
 
@@ -96,6 +96,7 @@ export const ServicePage = () => {
                     if(!response.requestCreated) {
                         throw new Error(response.message)
                     }
+                    setUser({...user, credits : user.credits - response.requestCreated.priceRate})
                     resolve(response.requestCreated)
                 })
                 .catch(error => setError(error.message))
@@ -118,7 +119,6 @@ export const ServicePage = () => {
     useEffect(() => {
         obtainService()
             .then((service) => {
-                console.log("second")
                 setRequestInfo((lastState) => ({...lastState, 
                     serviceOwnerId : service?.userId?._id, 
                     serviceId : service?._id 

@@ -8,11 +8,13 @@ import "./index.css";
 
 export const Account = () => {
 
-    const {user} = useContext(AuthContext);
+    const {user, setUser} = useContext(AuthContext);
 
     const [services, setServices] = useState([]);
 
     const [serviceDeleted, setServiceDeleted] = useState(false)
+
+    const [recivedOrShowRequest, setRecivedOrShowRequest] = useState(false)
 
     const [userOwnerRequests, setUserOwnerRequests] = useState([])
     
@@ -30,73 +32,90 @@ export const Account = () => {
         .catch(error => console.log(error));
 
     const readUserServices = () => {
-        fetch(`/service/readUserServices?userId=${user?._id}`, {
-            method: "GET",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"},
-        })
-        .then(response => response.json())
-        .then(responseData => {
-            setServices(responseData.serv)
-        })
-        .catch(error => console.log(error))
+        if(user?._id) {
+            fetch(`/service/readUserServices?userId=${user?._id}`, {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"},
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                setServices(responseData.serv)
+            })
+            .catch(error => console.log(error))
+        }
     };
 
     const readUserOwnerRequests = () => {
-        fetch(`/serviceRequest/readUserOwnerRequests?userId=${user?._id}`, {
-            method: "GET",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"},
-        })
-        .then(response => response.json())
-        .then(responseData => {
-            setUserOwnerRequests(responseData.requests)
-        })
-        .catch(error => console.log(error))
+        if(user?._id) {
+            fetch(`/serviceRequest/readUserOwnerRequests?userId=${user?._id}`, {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"},
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                setUserOwnerRequests(responseData.requests)
+            })
+            .catch(error => console.log(error))
+        }
     }
 
     const readUserApplicantRequests = () => {
-        fetch(`/serviceRequest/readUserApplicantRequests?userId=${user?._id}`, {
-            method: "GET",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"},
-        })
-        .then(response => response.json())
-        .then(responseData => {
-            setUserApplicantRequests(responseData.requests)
-        })
-        .catch(error => console.log(error))
+        if(user?._id) {
+            fetch(`/serviceRequest/readUserApplicantRequests?userId=${user?._id}`, {
+                method: "GET",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"},
+            })
+            .then(response => response.json())
+            .then(responseData => {
+                setUserApplicantRequests(responseData.requests)
+            })
+            .catch(error => console.log(error))
+        }
     }
 
     const confirmApplicantRequest = (id) => {
 
-        fetch("/serviceRequest/confirmApplicantRequest", {
-            method: "POST",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id})
-        })
-        .then(message => message)
-        .catch(error => error)
+        if(id) {
+            fetch("/serviceRequest/confirmApplicantRequest", {
+                method: "POST",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({id})
+            })
+            .then(response => response.json())
+            .then(() => {
+                const applicantRequestsCopy = userApplicantRequests.filter(({_id}) => _id !== id)
+                setUserApplicantRequests(applicantRequestsCopy)
+            })
+            .catch(error => console.error(error))
+        }
     }
 
     const confirmOwnerRequest = (id) => {
-        
-        fetch("/serviceRequest/confirmOwnerRequest", {
-            method: "POST",
-            headers: {
-                "access-control-allow-origin" : "*",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({id})
-        })
-        .then(message => message)
-        .catch(error => error)
+       
+        if(id) {
+            fetch("/serviceRequest/confirmOwnerRequest", {
+                method: "POST",
+                headers: {
+                    "access-control-allow-origin" : "*",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({id})
+            })
+            .then(() => {
+                const applicantOwnerCopy = userOwnerRequests.filter(({_id}) => _id !== id)
+                setUserOwnerRequests(applicantOwnerCopy)
+            })
+            .catch(error => error)
+        }
     }
 
     const rejectRequest = (id) => {
@@ -108,7 +127,10 @@ export const Account = () => {
             },
             body: JSON.stringify({id})
         })
-        .then(message => message)
+        .then(() => {
+            const applicantOwnerCopy = userOwnerRequests.filter(({_id}) => _id !== id)
+            setUserOwnerRequests(applicantOwnerCopy)
+        })
         .catch(error => error)
     }
 
@@ -121,24 +143,14 @@ export const Account = () => {
             },
             body: JSON.stringify({id})
         })
-        .then(message => message)
+        .then(() => {
+            const request = userApplicantRequests.find(({_id}) => _id === id)
+            setUser({...user, credits : user.credits + request.priceRate})
+
+            const applicantOwnerCopy = userApplicantRequests.filter(({_id}) => _id !== id)
+            setUserApplicantRequests(applicantOwnerCopy)
+        })
         .catch(error => error)
-    }
-
-    const displayRecivedRequests = () => {
-        let recivedRequests = document.getElementById("owner-requests")
-        let sendRequests = document.getElementById("applicant-requests") 
-        
-        recivedRequests.style.display = "block"
-        sendRequests.style.display = "none"
-    }
-
-    const displaySendRequests = () => {
-        let recivedRequests = document.getElementById("owner-requests")
-        let sendRequests = document.getElementById("applicant-requests")
-
-        recivedRequests.style.display = "none"
-        sendRequests.style.display = "block"
     }
 
     const servicesTable = services?.length > 0 ? 
@@ -180,15 +192,22 @@ export const Account = () => {
                 </div>
                 {servicesTable}
                 <div className = "request-buttons">
-                    <button onClick = {displayRecivedRequests}>
-                        Show recived requests
-                    </button>
-                    <button onClick = {displaySendRequests}>
-                        Show send requests
-                    </button>
+                    <ul className = "checkbox-block-service">
+                        <li>
+                            <label htmlFor = "checkbox-hidden" className = {!recivedOrShowRequest ? "active" : ""}>
+                                <input className = "checkbox" type = "radio" name = "post-event" id = "checkbox-hidden" checked = {!recivedOrShowRequest} onChange = {() => setRecivedOrShowRequest(false)}/>Sended requests
+                            </label>
+                        </li>
+                        <li>
+                            <label htmlFor = "checkbox-post" className = {recivedOrShowRequest ? "active" : ""}>
+                                <input className = "checkbox" type = "radio" name = "post-event" id = "checkbox-post" checked = {recivedOrShowRequest} onChange = {() => setRecivedOrShowRequest(true)}/>Recived requests
+                            </label>
+                        </li>
+                    </ul>
                 </div>
-                <div id = "owner-requests">{ownerRequestsTable}</div>
-                <div id = "applicant-requests">{applicantRequestsTable}</div>
+                {recivedOrShowRequest
+                    ? <div>{ownerRequestsTable}</div>
+                    : <div>{applicantRequestsTable}</div>}
             </div>
         </div>
     )
